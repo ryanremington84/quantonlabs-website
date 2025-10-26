@@ -48,7 +48,29 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 250px;
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.8) 15%,
+        rgba(0, 128, 255, 0.2) 50%,
+        rgba(4, 18, 39, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 999;
+}
+```
 
+**So the structure should be:**
+```
+Line 50: }
+Line 51: (add the body::before block here)
+Line 52: /* ==================== ACCESSIBILITY ==================== */
         /* ==================== ACCESSIBILITY ==================== */
         .skip-to-content {
             position: absolute;
@@ -93,15 +115,14 @@
         }
 
         /* ==================== NAVIGATION ==================== */
-     .nav {
+    .nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    backdrop-filter: blur(20px);
-    background: linear-gradient(to bottom, rgba(0, 128, 255, 0.15) 0%, rgba(4, 18, 39, 0.95) 100%);
-    
+    background: transparent;  /* Make nav transparent */
+    backdrop-filter: none;     /* Remove blur */
     transition: all 0.3s ease;
 }
         .nav-container {
