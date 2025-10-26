@@ -1,13 +1,6 @@
-// ==================== LOADING SCREEN ====================
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        document.getElementById('loadingScreen').classList.add('hidden');
-    }, 800);
-});
-
-// ==================== SMOOTH SCROLL ====================
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -19,72 +12,116 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ==================== SCROLL ANIMATIONS ====================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Header hide on scroll
+let lastScroll = 0;
+const header = document.getElementById('header');
 
-const observer = new IntersectionObserver(function(entries) {
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll <= 100) {
+        header.classList.add('transparent');
+        header.classList.remove('hidden');
+    } else {
+        header.classList.remove('transparent');
+        
+        if (currentScroll > lastScroll && currentScroll > 200) {
+            header.classList.add('hidden');
+        } else {
+            header.classList.remove('hidden');
+        }
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// Scroll reveal animation
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            
-            // Trigger counter animation for agent coverage
-            if (entry.target.querySelector('.counting')) {
-                const counter = entry.target.querySelector('.counting');
-                animateCounter(counter);
-            }
+            entry.target.classList.add('active');
         }
     });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in, .feature-card, .problem-card, .os-layer-card, .agent-card').forEach(element => {
-    observer.observe(element);
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
 });
 
-// ==================== COUNTER ANIMATION ====================
-function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    let current = 0;
+revealElements.forEach(el => {
+    revealObserver.observe(el);
+});
+
+// Electrical pulse animation for components cards - quantum-level slow
+const componentsGrid = document.getElementById('components-grid');
+if (componentsGrid) {
+    const cards = componentsGrid.querySelectorAll('.card');
     
-    const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-            element.textContent = Math.floor(current) + '%';
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target + '%';
-        }
-    };
-    updateCounter();
+    function triggerPulseSequence() {
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('pulse-active');
+                card.style.animation = 'cardPulse 1.8s linear';
+                setTimeout(() => {
+                    card.classList.remove('pulse-active');
+                    card.style.animation = '';
+                }, 1800);
+            }, index * 900); // 900ms delay between each card (quantum slowdown)
+        });
+    }
+    
+    // Trigger pulse when section comes into view
+    const pulseObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => triggerPulseSequence(), 500); // Initial delay
+                // Repeat every 16 seconds while in view (captured light cycle)
+                const interval = setInterval(() => {
+                    if (entry.isIntersecting) {
+                        triggerPulseSequence();
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 16000);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    pulseObserver.observe(componentsGrid);
 }
 
-/* REMOVED: Nav background on scroll - keeping nav transparent throughout
-// ==================== NAV BACKGROUND ON SCROLL ====================
-window.addEventListener('scroll', function() {
-    const nav = document.querySelector('.nav');
-    if (window.scrollY > 50) {
-        nav.style.background = 'rgba(10, 10, 15, 0.95)';
-        nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
-    } else {
-        nav.style.background = 'rgba(10, 10, 15, 0.8)';
-        nav.style.boxShadow = 'none';
-    }
-});
-*/
-
-// ==================== PARALLAX EFFECT ====================
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const floatingElements = document.querySelectorAll('.floating-element');
+// Stats electrical pulse - quantum precision
+const statsGrid = document.getElementById('stats-grid');
+if (statsGrid) {
+    const statItems = statsGrid.querySelectorAll('.stat-item');
     
-    floatingElements.forEach((element, index) => {
-        const speed = 0.3 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
-
-console.log('Quanton Labs - Growth OS Loaded Successfully');
+    function triggerStatsPulse() {
+        statItems.forEach((item, index) => {
+            setTimeout(() => {
+                const card = item.closest('.stat-item');
+                card.style.animation = 'cardPulse 1.5s linear';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 1500);
+            }, index * 700); // 700ms delay - slower quantum cascade
+        });
+    }
+    
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => triggerStatsPulse(), 300);
+                const interval = setInterval(() => {
+                    if (entry.isIntersecting) {
+                        triggerStatsPulse();
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 14000); // 14 second cycle - captured light rhythm
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    statsObserver.observe(statsGrid);
+}
