@@ -39,15 +39,15 @@
             --border-color: rgba(0, 128, 255, 0.2);
         }
 
-        body {
-            font-family: var(--font-display);
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+       body {
+    font-family: var(--font-display);
+    background: #041227;  /* Deep Navy per brand guide */
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
         /* ==================== ACCESSIBILITY ==================== */
         .skip-to-content {
