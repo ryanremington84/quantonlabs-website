@@ -1,127 +1,80 @@
-// Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+// File: assets/js/main.js
+/**
+ * Quanton Labs Website
+ * Mobile navigation and accessibility controls
+ */
 
-        // Header hide on scroll
-        let lastScroll = 0;
-        const header = document.getElementById('header');
-        
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll <= 100) {
-                header.classList.add('transparent');
-                header.classList.remove('hidden');
-            } else {
-                header.classList.remove('transparent');
-                
-                if (currentScroll > lastScroll && currentScroll > 200) {
-                    header.classList.add('hidden');
-                } else {
-                    header.classList.remove('hidden');
-                }
-            }
-            
-            lastScroll = currentScroll;
-        });
+(function() {
+  'use strict';
 
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+  // Mobile navigation toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  const navLinks = navMenu.querySelectorAll('a');
 
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
+  /**
+   * Toggle mobile menu open/closed state
+   */
+  function toggleMenu() {
+    const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+    
+    navToggle.setAttribute('aria-expanded', !isOpen);
+    navMenu.classList.toggle('is-open');
+    
+    // Trap focus in menu when open
+    if (!isOpen) {
+      navLinks[0].focus();
+    }
+  }
 
-        // Electrical pulse animation for components cards - quantum-level slow
-        const componentsGrid = document.getElementById('components-grid');
-        if (componentsGrid) {
-            const cards = componentsGrid.querySelectorAll('.card');
-            
-            function triggerPulseSequence() {
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.classList.add('pulse-active');
-                        card.style.animation = 'cardPulse 1.8s linear';
-                        setTimeout(() => {
-                            card.classList.remove('pulse-active');
-                            card.style.animation = '';
-                        }, 1800);
-                    }, index * 900); // 900ms delay between each card (quantum slowdown)
-                });
-            }
-            
-            // Trigger pulse when section comes into view
-            const pulseObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => triggerPulseSequence(), 500); // Initial delay
-                        // Repeat every 16 seconds while in view (captured light cycle)
-                        const interval = setInterval(() => {
-                            if (entry.isIntersecting) {
-                                triggerPulseSequence();
-                            } else {
-                                clearInterval(interval);
-                            }
-                        }, 16000);
-                    }
-                });
-            }, { threshold: 0.3 });
-            
-            pulseObserver.observe(componentsGrid);
-        }
+  /**
+   * Close mobile menu
+   */
+  function closeMenu() {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navMenu.classList.remove('is-open');
+    navToggle.focus();
+  }
 
-        // Stats electrical pulse - quantum precision
-        const statsGrid = document.getElementById('stats-grid');
-        if (statsGrid) {
-            const statItems = statsGrid.querySelectorAll('.stat-item');
-            
-            function triggerStatsPulse() {
-                statItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        const card = item.closest('.stat-item');
-                        card.style.animation = 'cardPulse 1.5s linear';
-                        setTimeout(() => {
-                            card.style.animation = '';
-                        }, 1500);
-                    }, index * 700); // 700ms delay - slower quantum cascade
-                });
-            }
-            
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => triggerStatsPulse(), 300);
-                        const interval = setInterval(() => {
-                            if (entry.isIntersecting) {
-                                triggerStatsPulse();
-                            } else {
-                                clearInterval(interval);
-                            }
-                        }, 14000); // 14 second cycle - captured light rhythm
-                    }
-                });
-            }, { threshold: 0.3 });
-            
-            statsObserver.observe(statsGrid);
-        }
+  // Toggle button click handler
+  if (navToggle) {
+    navToggle.addEventListener('click', toggleMenu);
+  }
+
+  // Close menu when clicking nav links
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (navMenu.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && navMenu.classList.contains('is-open')) {
+      closeMenu();
+    }
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (navMenu.classList.contains('is-open') && 
+        !navMenu.contains(event.target) && 
+        !navToggle.contains(event.target)) {
+      closeMenu();
+    }
+  });
+
+  // Handle window resize - close menu and reset on larger screens
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      if (window.innerWidth > 767 && navMenu.classList.contains('is-open')) {
+        closeMenu();
+      }
+    }, 250);
+  });
+
+})();
