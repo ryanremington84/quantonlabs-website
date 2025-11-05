@@ -208,21 +208,34 @@ button:focus-visible {
   height: auto;
 }
 
-/* Navigation menu */
+/* ===========================
+   Navigation menu
+   =========================== */
+
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-xl); /* wider spacing between links */
+}
+
+.nav-menu li {
+  margin: 0;
 }
 
 .nav-menu a {
   font-size: var(--font-size-body);
   font-weight: 500;
   color: var(--navy);
+  text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a:focus {
   color: var(--azure);
 }
 
@@ -235,11 +248,15 @@ button:focus-visible {
   transition: background-color var(--transition-fast);
 }
 
-.nav-menu .nav-cta:hover {
+.nav-menu .nav-cta:hover,
+.nav-menu .nav-cta:focus {
   background-color: var(--light-blue);
 }
 
-/* Mobile menu toggle */
+/* ===========================
+   Mobile menu toggle
+   =========================== */
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -248,11 +265,15 @@ button:focus-visible {
   width: 40px;
   height: 40px;
   padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .nav-toggle-icon,
 .nav-toggle-icon::before,
 .nav-toggle-icon::after {
+  position: relative;
   display: block;
   width: 24px;
   height: 2px;
@@ -266,13 +287,8 @@ button:focus-visible {
   position: absolute;
 }
 
-.nav-toggle-icon::before {
-  transform: translateY(-7px);
-}
-
-.nav-toggle-icon::after {
-  transform: translateY(7px);
-}
+.nav-toggle-icon::before { transform: translateY(-7px); }
+.nav-toggle-icon::after  { transform: translateY(7px); }
 
 .nav-toggle[aria-expanded="true"] .nav-toggle-icon {
   background: transparent;
@@ -286,7 +302,10 @@ button:focus-visible {
   transform: rotate(-45deg);
 }
 
-/* Mobile navigation styles */
+/* ===========================
+   Mobile navigation styles
+   =========================== */
+
 @media (max-width: 767px) {
   .nav-toggle {
     display: flex;
@@ -299,7 +318,7 @@ button:focus-visible {
     right: 0;
     flex-direction: column;
     align-items: stretch;
-    gap: 0;
+    gap: var(--space-sm);
     padding: var(--space-md);
     background: var(--navy);
     transform: translateY(-100%);
