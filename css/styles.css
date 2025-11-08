@@ -556,9 +556,12 @@ nav[aria-label="Primary"] {
 }
 
 .footer-brand img {
-  width: 180px;
+  width: 220px;
   height: auto;
   margin-bottom: var(--space-sm);
+  filter: brightness(1.15);
+}
+
 }
 
 .footer-tagline {
