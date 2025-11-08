@@ -334,6 +334,7 @@ nav[aria-label="Primary"] {
     display: grid;
   }
 
+  @media (max-width: 991px) {
   .nav-menu {
     position: fixed;
     top: 80px;
@@ -349,8 +350,9 @@ nav[aria-label="Primary"] {
     visibility: hidden;
     transition: transform var(--t-base), opacity var(--t-base), visibility var(--t-base);
   }
+}
 
-  .nav-menu.is-open {
+   .nav-menu.is-open {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
