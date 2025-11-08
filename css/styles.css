@@ -122,6 +122,41 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--azure);outline-offs
 .logo{grid-column:1;display:inline-flex;align-items:center}
 /* fluid size: desktop ~320–360px, scales down nicely on small screens */
 .logo img{width:clamp(280px,25vw,360px);height:auto}
+/* Brand group: animated icon + wordmark SVG */
+.brand{                      /* replaces the old .logo usage in HTML */
+  grid-column:1;
+  display:inline-flex;
+  align-items:center;
+  gap:var(--space-md);       /* space between icon and wordmark */
+  text-decoration:none;
+  line-height:1;
+}
+
+.brand-icon{
+  width:56px;                /* adjust size as needed */
+  height:auto;
+  display:block;
+}
+
+.brand-wordmark{
+  height:56px;               /* keep visual match with icon */
+  width:auto;
+  display:block;
+}
+
+/* Hover polish */
+.brand:hover{ opacity:0.92; }
+
+/* Reduced-motion fallback (note the path is relative to /css/) */
+@media (prefers-reduced-motion: reduce){
+  .brand-icon{ content:url("../images/icon-static.svg"); }
+}
+
+/* Responsive tweak */
+@media (max-width:767px){
+  .brand-icon{ width:44px; }
+  .brand-wordmark{ height:44px; }
+}
 
 /* Nav placement */
 nav[aria-label="Primary"]{grid-column:3;justify-self:end}
