@@ -253,22 +253,20 @@ nav[aria-label="Primary"] {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--space-4);
+  gap: var(--space-4);            /* 32px */
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
-.nav-menu a {
-  font-weight: 500;
-  color: var(--navy);
-  transition: color var(--t-fast);
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-4); /* 32px for consistent horizontal spacing */
 }
-
-.nav-menu a:hover {
-  color: var(--azure);
-}
-
 .nav-cta {
   padding: 12px var(--space-4);
   border-radius: var(--radius-sm);
