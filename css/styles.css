@@ -398,13 +398,18 @@ nav[aria-label="Primary"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px var(--space-md);
-  background: transparent;
-  color: var(--azure);
-  font-weight: 700;
+  padding: 12px var(--space-4);
   border: 2px solid var(--azure);
   border-radius: var(--radius-sm);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  font-weight: 700;
+  background: var(--azure);
+  color: var(--white);
+  transition: background-color var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+}
+
+.nav-menu .nav-cta:hover {
+  background: var(--light-blue);
+  border-color: var(--light-blue);
 }
 
 .nav-menu .nav-cta:hover,
