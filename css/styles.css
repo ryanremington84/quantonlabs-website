@@ -133,23 +133,26 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--azure);outline-offs
 }
 
 .brand-icon{
-  width:56px;                /* adjust size as needed */
+  width:40px;             /* adjust as needed */
   height:auto;
   display:block;
 }
 
 .brand-wordmark{
-  height:56px;               /* keep visual match with icon */
-  width:auto;
+  width:clamp(220px, 24vw, 360px);  /* scale by width for consistent visual sizing */
+  height:auto;
   display:block;
 }
 
-/* Hover polish */
 .brand:hover{ opacity:0.92; }
 
-/* Reduced-motion fallback (note the path is relative to /css/) */
 @media (prefers-reduced-motion: reduce){
   .brand-icon{ content:url("../images/icon-static.svg"); }
+}
+
+@media (max-width:767px){
+  .brand-icon{ width:32px; }
+  .brand-wordmark{ width:clamp(160px, 48vw, 240px); }
 }
 
 /* Responsive tweak */
