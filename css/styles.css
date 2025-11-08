@@ -208,23 +208,29 @@ button:focus-visible {
   box-shadow: 0 2px 8px rgba(4, 18, 39, 0.08);
 }
 
-/* Three-zone grid: logo (auto) | center space (1fr) | nav+toggle (auto) */
+/* ==========================================================
+   HEADER & NAVIGATION – THREE-ZONE GRID LAYOUT
+   ========================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(10px);
+  box-shadow: 0 2px 8px rgba(4, 18, 39, 0.08);
+}
+
+/* Header inner grid: logo | center spacer | nav+toggle */
 .header-inner {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: var(--space-md);
-  height: 72px;
+  gap: var(--space-3);
+  height: 80px;
 }
 
-@media (min-width: 768px) {
-  .header-inner {
-    height: 80px;
-    gap: var(--space-lg);
-  }
-}
-
-/* Logo - left zone (grid column 1) */
+/* Logo – left zone */
 .logo {
   grid-column: 1;
   display: inline-flex;
@@ -232,49 +238,144 @@ button:focus-visible {
 }
 
 .logo img {
-  width: 180px;
+  width: 200px;
   height: auto;
 }
 
-@media (min-width: 768px) {
-  .logo img {
-    width: 200px;
-  }
-}
-
-/* Navigation toggle - always in right zone on mobile */
-.nav-toggle {
+/* Navigation – right zone */
+nav[aria-label="Primary"] {
   grid-column: 3;
   justify-self: end;
 }
 
-/* ===========================
-   Navigation menu
-   =========================== */
+/* Nav menu layout */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-/* Desktop: nav takes the right zone and aligns content to the right */
-@media (min-width: 768px) {
-  nav[aria-label="Primary"] {
-    grid-column: 3;
-    justify-self: end;
+.nav-menu a {
+  font-weight: 500;
+  color: var(--navy);
+  transition: color var(--t-fast);
+}
+
+.nav-menu a:hover {
+  color: var(--azure);
+}
+
+.nav-cta {
+  padding: 12px var(--space-4);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  background: var(--azure);
+  color: var(--white);
+  transition: background-color var(--t-fast);
+}
+
+.nav-cta:hover {
+  background-color: var(--light-blue);
+}
+
+/* Mobile toggle – hidden on desktop */
+.nav-toggle {
+  display: none;
+  grid-column: 3;
+  justify-self: end;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+}
+
+.nav-toggle-icon {
+  position: relative;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  transition: transform var(--t-fast), opacity var(--t-fast);
+}
+
+.nav-toggle-icon::before {
+  transform: translateY(-7px);
+}
+
+.nav-toggle-icon::after {
+  transform: translateY(7px);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before {
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
+  transform: rotate(-45deg);
+}
+
+/* Mobile menu behavior */
+@media (max-width: 991px) {
+  .nav-toggle {
+    display: grid;
   }
-  
+
   .nav-menu {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: var(--space-md);
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--navy);
+    gap: 0;
+    padding: var(--space-3);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform var(--t-base), opacity var(--t-base), visibility var(--t-base);
+  }
+
+  .nav-menu.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-menu a {
+    display: block;
+    color: var(--white);
+    padding: var(--space-2) 0;
+  }
+
+  .nav-cta {
+    margin-top: var(--space-2);
+    text-align: center;
+    background: var(--azure);
+    color: var(--white);
   }
 }
 
-@media (min-width: 1024px) {
-  .nav-menu {
-    gap: var(--space-lg);
-  }
-}
 
 .nav-menu li {
   margin: 0;
