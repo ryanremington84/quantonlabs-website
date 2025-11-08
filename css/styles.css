@@ -115,39 +115,67 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--azure);outline-offs
 
 .header-inner{
   display:grid;grid-template-columns:auto 1fr auto;
-  align-items:center;gap:var(--space-lg);height:80px;
+  align-items:center;gap:var(--space-lg);height:92px;
 }
 
 /* Logo */
 .logo{grid-column:1;display:inline-flex;align-items:center}
-.logo img{width:240px;height:auto}
-@media (min-width:1200px){ .logo img{width:260px} }
-@media (max-width:767px){ .logo img{width:180px} }
+/* fluid size: desktop ~320–360px, scales down nicely on small screens */
+.logo img{width:clamp(280px,25vw,360px);height:auto}
 
 /* Nav placement */
 nav[aria-label="Primary"]{grid-column:3;justify-self:end}
-
 /* Nav menu layout */
 .nav-menu{
-  display:flex;align-items:center;justify-content:flex-end;
-  margin:0;padding:0;gap:var(--space-xl); /* 48px */
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  list-style:none;
+  margin:0;
+  padding:0;
+  gap:var(--space-xl); /* 48px */
 }
+
 @media (min-width:1200px){
-  .nav-menu{gap:var(--space-2xl)}         /* 64px */
-  .nav-menu a{font-size:var(--font-size-body-lg)}
+  .nav-menu{ gap:var(--space-2xl) }      /* 64px on large desktop */
+  .nav-menu a{ font-size:var(--font-size-body-lg) }
 }
-.nav-menu a{font-weight:600;color:var(--navy);transition:color var(--transition-fast)}
-.nav-menu a:hover,.nav-menu a:focus{color:var(--light-blue)}
+
+.nav-menu a{
+  font-weight:600;
+  color:var(--navy);
+  text-decoration:none;
+  line-height:1;
+  padding:0 2px;                         /* tiny hit-area buffer */
+  transition:color var(--transition-fast);
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus{ color:var(--light-blue) }
 
 /* CTA */
 .nav-cta{
-  display:inline-flex;align-items:center;justify-content:center;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   padding:12px var(--space-lg);
-  border:2px solid var(--azure);border-radius:var(--radius-sm);
-  font-weight:700;background:var(--azure);color:var(--white);
-  transition:background-color var(--transition-fast),color var(--transition-fast),border-color var(--transition-fast);
+  border:2px solid var(--azure);
+  border-radius:var(--radius-sm);
+  font-weight:700;
+  background:var(--azure);
+  color:var(--white);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
 }
-.nav-cta:hover{background:var(--light-blue);border-color:var(--light-blue)}
+
+.nav-cta:hover,
+.nav-cta:focus{
+  background:var(--light-blue);
+  border-color:var(--light-blue);
+  color:var(--white);
+}
 
 /* Mobile toggle (hidden on desktop) */
 .nav-toggle{
