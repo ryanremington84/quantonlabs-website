@@ -1,8 +1,22 @@
+/* =========================================================
+   Quanton Labs — Stylesheet (with smooth scroll + reveals)
+   ========================================================= */
+
 /* Base Reset */
 *,
 *::before,
 *::after { box-sizing: border-box; }
 html, body { height: 100%; }
+
+/* Smooth scrolling, with accessibility fallback */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* If you anchor-link to sections, leave space for fixed header */
+:target { scroll-margin-top: 96px; }
+
 body {
   margin: 0;
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -38,18 +52,10 @@ body {
   color: #ffffff;
   letter-spacing: 0.25px;
 }
-.logo em {
-  font-style: normal;
-  font-weight: 300;
-  color: #0080FF;
-}
+.logo em { font-style: normal; font-weight: 300; color: #0080FF; }
 
 /* Nav */
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
+.nav { display: flex; align-items: center; gap: 32px; }
 .nav a {
   text-decoration: none;
   color: #ffffff;
@@ -66,28 +72,16 @@ body {
   border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 120ms ease;
   cursor: pointer;
 }
-.btn-signin {
-  background: #e5e7eb;
-  color: #041227;
-}
+.btn:active { transform: translateY(1px); }
+.btn-signin { background: #e5e7eb; color: #041227; }
 .btn-signin:hover { background: #cbd5e1; }
-.btn-primary {
-  background: #0080FF;
-  color: #ffffff;
-}
+.btn-primary { background: #0080FF; color: #ffffff; }
 .btn-primary:hover { background: #31769e; }
-.btn-outline {
-  background: transparent;
-  color: #ffffff;
-  border: 2px solid rgba(0,128,255,0.6);
-}
-.btn-outline:hover {
-  background: rgba(132,156,188,0.15);
-  border-color: #0080FF;
-}
+.btn-outline { background: transparent; color: #ffffff; border: 2px solid rgba(0,128,255,0.6); }
+.btn-outline:hover { background: rgba(132,156,188,0.15); border-color: #0080FF; }
 
 /* Hero */
 .main {
@@ -99,6 +93,7 @@ body {
 }
 .content { max-width: 640px; z-index: 3; }
 
+/* Tag */
 .tag-box {
   position: relative;
   width: 290px;
@@ -113,29 +108,19 @@ body {
 .tag {
   position: absolute;
   inset: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   border-radius: 50px;
   background: #041227;
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 14px; font-weight: 700; color: #ffffff;
 }
 .tag .dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-left: 8px;
-  border-radius: 50%;
-  background: #0080FF;
+  display: inline-block; width: 8px; height: 8px; margin-left: 8px;
+  border-radius: 50%; background: #0080FF;
   box-shadow: 0 0 12px rgba(0,128,255,0.65);
 }
-@keyframes gradient-move {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
+@keyframes gradient-move { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
+/* Heading + copy */
 .hero-title {
   margin: 10px 0 14px 0;
   font-size: clamp(40px, 6vw, 64px);
@@ -181,32 +166,95 @@ body {
 /* Footer */
 .footer { padding: 40px 0 60px 0; color: #9fb5cd; font-size: 14px; text-align: center; }
 
-/* Background effects */
+/* Decorative background layers */
 .gradient-orb {
   position: fixed;
   top: -10%;
   right: -10%;
-  width: 60vmax;
-  height: 60vmax;
+  width: 60vmax; height: 60vmax;
   background:
     radial-gradient(35% 35% at 60% 40%, rgba(0,128,255,0.45), rgba(0,128,255,0) 70%),
     radial-gradient(30% 30% at 40% 60%, rgba(255,255,255,0.25), rgba(255,255,255,0) 70%);
   filter: blur(36px);
   opacity: 0.6;
   z-index: 1;
+  pointer-events: none;
 }
 .layer-blur {
   position: fixed;
   top: 20%;
   right: 0;
-  width: 30rem;
-  height: 0;
+  width: 30rem; height: 0;
   box-shadow: 0 0 180px 80px rgba(0,128,255,0.25);
   transform: rotate(30deg);
   z-index: 0;
+  pointer-events: none;
 }
 
-/* Responsive */
+/* =========================================================
+   Section reveal effects, tuned for AOS attributes
+   These enhance or replace the default AOS CSS.
+   ========================================================= */
+
+/* Fade down (used in header/nav) */
+[data-aos="fade-down"] {
+  opacity: 0;
+  transform: translateY(-16px);
+  transition: opacity 560ms ease, transform 560ms ease;
+}
+[data-aos="fade-down"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade up cards/sections */
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 640ms ease, transform 640ms ease;
+}
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: none;
+}
+
+/* Fade + zoom for hero content and Spline */
+[data-aos="fade-zoom-in"] {
+  opacity: 0;
+  transform: translateY(14px) scale(0.985);
+  transition: opacity 700ms ease, transform 700ms ease;
+  transform-origin: 50% 60%;
+}
+[data-aos="fade-zoom-in"].aos-animate {
+  opacity: 1;
+  transform: none;
+}
+
+/* Respect user motion preferences, avoid surprises */
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Optional: focus-visible behavior for keyboard users */
+:root:not(.kb-nav) :focus { outline: none; }
+
+/* Optional: ripple support hooks, harmless if unused */
+.btn { position: relative; overflow: hidden; }
+.btn .ripple {
+  position: absolute; border-radius: 50%;
+  transform: scale(0); opacity: 0.45; background: currentColor;
+  animation: ripple 450ms ease-out forwards;
+}
+@keyframes ripple { to { transform: scale(1); opacity: 0; } }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
 @media (max-width: 1280px) {
   .container { padding: 0 60px; }
   .hero-3d { width: 52vw; height: 70vh; }
@@ -221,14 +269,8 @@ body {
   .container { padding: 0 20px; }
   .main { padding: 16px 0 60px 0; min-height: auto; }
   .hero-3d {
-    position: relative;
-    width: 100%;
-    height: 360px;
-    right: auto;
-    top: 12px;
-    transform: none;
-    min-width: 0;
-    margin-top: 8px;
+    position: relative; width: 100%; height: 360px;
+    right: auto; top: 12px; transform: none; min-width: 0; margin-top: 8px;
   }
   .content { max-width: 100%; }
   .hero-title { font-size: clamp(32px, 8vw, 44px); }
