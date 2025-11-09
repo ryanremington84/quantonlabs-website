@@ -76,15 +76,52 @@ body {
   cursor: pointer;
 }
 .btn:active { transform: translateY(1px); }
+/* Sign in button */
 .btn-signin {
+  position: relative;
+  display: inline-block;
   background: linear-gradient(90deg, #0080FF 0%, #00B3FF 100%);
   color: #ffffff;
+  border: 0;
   border-radius: 50px;
+  padding: 12px 28px;
+  font-weight: 600;
   box-shadow: 0 0 20px rgba(0,128,255,0.25);
+  transition: transform 120ms ease, box-shadow 200ms ease, filter 200ms ease;
+  overflow: hidden; /* for sheen */
 }
+
 .btn-signin:hover {
-  background: linear-gradient(90deg, #00B3FF 0%, #2DD9FF 100%);
   box-shadow: 0 0 28px rgba(0,179,255,0.35);
+  filter: brightness(1.05);
+}
+
+/* moving light sheen on hover */
+.btn-signin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 40%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform 600ms ease;
+}
+.btn-signin:hover::before {
+  transform: translateX(120%);
+}
+
+/* keyboard focus visibility */
+.btn-signin:focus {
+  outline: 2px solid rgba(0,179,255,0.9);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0,179,255,0.25);
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-signin,
+  .btn-signin::before {
+    transition: none;
+  }
 }
 
 .btn-primary { background: #0080FF; color: #ffffff; }
