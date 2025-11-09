@@ -76,8 +76,17 @@ body {
   cursor: pointer;
 }
 .btn:active { transform: translateY(1px); }
-.btn-signin { background: #e5e7eb; color: #041227; }
-.btn-signin:hover { background: #cbd5e1; }
+.btn-signin {
+  background: linear-gradient(90deg, #0080FF 0%, #00B3FF 100%);
+  color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 0 20px rgba(0,128,255,0.25);
+}
+.btn-signin:hover {
+  background: linear-gradient(90deg, #00B3FF 0%, #2DD9FF 100%);
+  box-shadow: 0 0 28px rgba(0,179,255,0.35);
+}
+
 .btn-primary { background: #0080FF; color: #ffffff; }
 .btn-primary:hover { background: #31769e; }
 .btn-outline { background: transparent; color: #ffffff; border: 2px solid rgba(0,128,255,0.6); }
