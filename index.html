@@ -330,15 +330,18 @@
         </div>
       </section>
 
-      <!-- Spline 3D Model -->
-      <spline-viewer
-        class="hero-3d"
-        data-aos="fade-zoom-in"
-        data-aos-duration="2200"
-        loading="lazy"
-        touch-action="pan-y"
-        url="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode">
-      </spline-viewer>
+    <!-- Spline 3D Model -->
+<div class="hero-3d spline-wrap" id="splineWrap">
+  <spline-viewer
+    data-aos="fade-zoom-in"
+    data-aos-duration="2200"
+    loading="lazy"
+    touch-action="pan-y"
+    url="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode">
+  </spline-viewer>
+  <div class="scroll-cue">Scroll</div>
+</div>
+
     </main>
 
     <section id="features" class="features">
@@ -366,5 +369,15 @@
   <script>
     AOS.init({ once: true });
   </script>
+  <script
+  const wrap = document.getElementById('splineWrap');
+  if (wrap) {
+    wrap.addEventListener('wheel', e => {
+      e.preventDefault();
+      window.scrollBy(0, e.deltaY);
+    }, { passive:false });
+  }
+</script>
+
 </body>
 </html>
