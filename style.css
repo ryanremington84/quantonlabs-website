@@ -360,3 +360,25 @@ body {
   .hero-title { font-size: clamp(32px, 8vw, 44px); }
   .features { grid-template-columns: 1fr; }
 }
+/* Logo Overlay for Hero */
+.logo-overlay {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  text-align: center;
+}
+.logo-overlay img {
+  width: 320px;
+  max-width: 35vw;
+  height: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+@media (max-width: 768px) {
+  .logo-overlay img {
+    width: 220px;
+    max-width: 60vw;
+  }
+}
