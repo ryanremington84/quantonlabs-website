@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Quanton Labs — Interactive 3D Hero</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Spline 3D Viewer -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.60/build/spline-viewer.js"></script>
+  </head>
+  <body>
+    <!-- Decorative background layers -->
+    <div class="gradient-orb" aria-hidden="true"></div>
+    <div class="layer-blur" aria-hidden="true"></div>
+
+    <div class="container">
+      <header class="header">
+        <h1 class="logo" data-aos="fade-down" data-aos-duration="1500">
+          QUANTON <em>LABS</em>
+        </h1>
+
+        <nav class="nav">
+          <a href="#company" data-aos="fade-down" data-aos-duration="1800">Company</a>
+          <a href="#features" data-aos="fade-down" data-aos-duration="1800">Features</a>
+          <a href="#resources" data-aos="fade-down" data-aos-duration="1800">Resources</a>
+          <a href="#docs" data-aos="fade-down" data-aos-duration="1800">Docs</a>
+          <a href="#signin" class="btn btn-signin" data-aos="fade-down" data-aos-duration="2000">Sign in</a>
+        </nav>
+      </header>
+
+      <main class="main">
+        <section class="content">
+          <div class="tag-box" data-aos="fade-zoom-in" data-aos-duration="1400">
+            <div class="tag">Introducing • <span class="dot"></span></div>
+          </div>
+
+          <h1 class="hero-title" data-aos="fade-zoom-in" data-aos-duration="1700">
+            Immersive 3D, simplified
+          </h1>
+
+          <p class="description" data-aos="fade-zoom-in" data-aos-duration="1900">
+            A minimal template that blends responsive UI with a live Spline scene. Pure HTML, CSS, and one script include, fully responsive and fast to deploy.
+          </p>
+
+          <div class="buttons" data-aos="fade-zoom-in" data-aos-duration="2100">
+            <a href="#get-started" class="btn btn-outline">Get started</a>
+            <a href="#learn-more" class="btn btn-primary">Learn more</a>
+          </div>
+        </section>
+
+        <!-- Embedded Spline 3D scene -->
+        <spline-viewer
+          class="hero-3d"
+          data-aos="fade-zoom-in"
+          data-aos-duration="2200"
+          loading="lazy"
+          touch-action="pan-y"
+          url="https://my.spline.design/pandemoniumchaosartwork-Vhp0b4nGVf4iHFGns7C7XY48/">
+        </spline-viewer>
+      </main>
+
+      <section id="features" class="features">
+        <div class="feat" data-aos="fade-up" data-aos-duration="900">
+          <h3>No build tools</h3>
+          <p>Open index.html and you are live. Add your copy, ship quickly, iterate faster.</p>
+        </div>
+        <div class="feat" data-aos="fade-up" data-aos-duration="1100">
+          <h3>Spline native</h3>
+          <p>Embed any Spline Public URL. Keep interactivity, camera, and materials intact.</p>
+        </div>
+        <div class="feat" data-aos="fade-up" data-aos-duration="1300">
+          <h3>Brand aligned</h3>
+          <p>Quantum Blue accents, crisp typography, and layered depth for executive polish.</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>© Quanton Labs. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <!-- AOS + script -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
