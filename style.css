@@ -390,6 +390,16 @@ body {
 .brand-wordmark{ height:18px; width:auto; display:block; }
 .brand-tagline{ height:12px; width:auto; margin-top:4px; opacity:.9; display:block; }
 
+/* Alignment and interaction refinements */
+.brand-icon { flex: 0 0 36px; }              /* fixed width for the Spline container */
+.brand-text { justify-content: center; }     /* vertically center wordmark + tagline */
+.brand-icon spline-viewer { pointer-events: none; } /* prevent scroll/click interference */
+.brand-tagline { letter-spacing: .6px; }
+
+/* optional tiny baseline adjustment if text looks low */
+.brand-text { transform: translateY(1px); }
+
+
 /* Keep header baseline aligned with nav */
 .header{ align-items:center; }
 .nav a{ line-height:1; }
