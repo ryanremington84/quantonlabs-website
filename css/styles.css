@@ -259,7 +259,13 @@ nav[aria-label="Primary"]{grid-column:3;justify-self:end}
 
 .site-footer{background:var(--navy);color:var(--ice-white);padding:var(--space-2xl) 0 var(--space-md)}
 .footer-inner{display:grid;grid-template-columns:2fr 1fr;gap:var(--space-2xl);margin-bottom:var(--space-xl)}
-.footer-brand img{width:220px;height:auto;margin-bottom:var(--space-sm);filter:brightness(1.15)}
+.footer-brand img {
+  width: 220px;
+  height: auto;
+  margin-bottom: var(--space-sm);
+  filter: invert(1) brightness(1.2); /* makes navy wordmark appear white on dark footer */
+}
+
 .footer-tagline{font-size:var(--font-size-body-sm);font-weight:300;color:var(--light-blue);margin-top:var(--space-sm)}
 
 .footer-links{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-lg)}
