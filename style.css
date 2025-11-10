@@ -42,17 +42,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 96px;
   position: relative;
   z-index: 4;
 }
-.logo {
-  font-weight: 700;
-  font-size: 26px;
-  color: #ffffff;
-  letter-spacing: 0.25px;
-}
-.logo em { font-style: normal; font-weight: 300; color: #0080FF; }
 
 /* Nav */
 .nav { display: flex; align-items: center; gap: 32px; }
@@ -166,7 +159,7 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 96px);
   padding: 48px 0 96px 0;
 }
 .content { max-width: 640px; z-index: 3; }
@@ -360,28 +353,7 @@ body {
   .hero-title { font-size: clamp(32px, 8vw, 44px); }
   .features { grid-template-columns: 1fr; }
 }
-/* Logo Overlay for Hero */
-.logo-overlay {
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  text-align: center;
-}
-.logo-overlay img {
-  width: 320px;
-  max-width: 35vw;
-  height: auto;
-  opacity: 0.95;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
-}
-@media (max-width: 768px) {
-  .logo-overlay img {
-    width: 220px;
-    max-width: 60vw;
-  }
-}
+
 /* Brand cluster in header: animated icon + wordmark + tagline */
 .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
 .brand-icon{ position:relative; width:72px; height:72px; display:inline-block; }
@@ -390,15 +362,11 @@ body {
 .brand-wordmark{ height:28px; width:auto; display:block; }
 .brand-tagline{ height: 18px; width: auto; margin-top: 6px; opacity: .9; }
 
-/* Alignment and interaction refinements */
-.brand-icon { flex: 0 0 36px; }              /* fixed width for the Spline container */
-.brand-text { justify-content: center; }     /* vertically center wordmark + tagline */
-.brand-icon spline-viewer { pointer-events: none; } /* prevent scroll/click interference */
+/* alignment and interaction refinements */
+.brand-icon { flex: 0 0 72px; } /* fix icon width inside flex container */
+.brand-text { justify-content: center; transform: translateY(1px); }
+.brand-icon spline-viewer { pointer-events: none; } /* avoids hover/scroll conflict */
 .brand-tagline { letter-spacing: .6px; }
-
-/* optional tiny baseline adjustment if text looks low */
-.brand-text { transform: translateY(1px); }
-
 
 /* Keep header baseline aligned with nav */
 .header{ align-items:center; }
