@@ -1,43 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quanton Labs deploys AI-integrated operating systems for growth-stage businesses generating $1M-$20M annually.">
   <title>Quanton Labs — The Architecture of Intelligent Business</title>
-  <meta name="description" content="AI-integrated operating systems for growth-stage businesses. Deploy Growth OS and transform operational chaos into systematic intelligence.">
-
-  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Spline Viewer -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.60/build/spline-viewer.js"></script>
-
+  
   <style>
-    /* ============================================
-       CSS VARIABLES - BRAND TOKENS
-       ============================================ */
+    /* ========================================
+       CSS RESET & BASE STYLES
+       ======================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ========================================
+       CSS VARIABLES (BRAND TOKENS)
+       ======================================== */
     :root {
-      /* Brand Colors */
+      /* Colors */
       --navy: #041227;
       --azure: #0080FF;
       --dark-blue: #175581;
       --medium-blue: #31769e;
       --light-blue: #849cbc;
       --vibrant-teal: #408c9c;
-      --ice-white: #F3F3F3;
       --white: #FFFFFF;
+      --ice-white: #F3F3F3;
       --slate-gray: #6B7280;
-      
-      /* Brand Gradients */
+
+      /* Gradients */
       --grad-electric: linear-gradient(90deg, #041227 0%, #1a3d66 18%, #0080FF 35%, #FFFFFF 48%, #5999cc 62%, #0080FF 80%, #1a3d66 100%);
       --grad-secondary: linear-gradient(90deg, #175581 0%, #31769e 50%, #408c9c 100%);
       --grad-dark: linear-gradient(180deg, #041227 0%, #0d1b2a 50%, #1b263b 100%);
-      
-      /* Spacing Scale (8px base) */
+
+      /* Spacing (8px scale) */
       --space-xs: 8px;
       --space-sm: 16px;
       --space-md: 24px;
@@ -45,51 +47,37 @@
       --space-xl: 48px;
       --space-2xl: 64px;
       --space-3xl: 96px;
-      
-      /* Typography Scale */
-      --font-hero: 64px;
-      --font-h1: 48px;
-      --font-h2: 36px;
-      --font-h3: 28px;
-      --font-h4: 20px;
-      --font-body-lg: 18px;
-      --font-body: 16px;
-      --font-body-sm: 14px;
-      
-      /* Border Radius */
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-full: 50px;
+
+      /* Typography */
+      --font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+
+      /* Breakpoints (defined for media queries) */
+      --breakpoint-sm: 640px;
+      --breakpoint-md: 768px;
+      --breakpoint-lg: 1024px;
+      --breakpoint-xl: 1280px;
     }
 
-    /* ============================================
-       BRAND KEYFRAMES
-       ============================================ */
+    /* ========================================
+       KEYFRAME ANIMATIONS
+       ======================================== */
     @keyframes ql-electric-flow {
       0% { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
     }
 
     @keyframes ql-fade-up {
-      from { 
-        opacity: 0; 
-        transform: translateY(8px); 
+      from {
+        opacity: 0;
+        transform: translateY(8px);
       }
-      to { 
-        opacity: 1; 
-        transform: translateY(0); 
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    @keyframes gradient-move {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-
-    /* ============================================
-       REDUCED MOTION
-       ============================================ */
+    /* Disable animations for users who prefer reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation: none !important;
@@ -97,594 +85,493 @@
       }
     }
 
-    /* ============================================
-       RESET & BASE
-       ============================================ */
-    *, *::before, *::after { 
-      box-sizing: border-box; 
-      margin: 0;
-      padding: 0;
-    }
-    
-    html, body { height: 100%; }
-    
-    html { 
-      scroll-behavior: smooth; 
-    }
-    
-    @media (prefers-reduced-motion: reduce) { 
-      html { scroll-behavior: auto; } 
-    }
-    
-    :target { 
-      scroll-margin-top: 96px; 
+    /* ========================================
+       BASE TYPOGRAPHY & LAYOUT
+       ======================================== */
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      color: var(--white);
-      background: var(--grad-dark);
+      font-family: var(--font-family);
+      font-weight: 400;
       line-height: 1.6;
-      font-size: var(--font-body);
+      color: var(--navy);
+      background-color: var(--white);
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ============================================
-       LAYOUT
-       ============================================ */
-    .skip-link {
+    /* ========================================
+       UTILITY CLASSES
+       ======================================== */
+    .visually-hidden {
       position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--azure);
-      color: var(--white);
-      padding: 8px 16px;
-      text-decoration: none;
-      z-index: 100;
-    }
-    .skip-link:focus {
-      top: 0;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .container {
-      width: 100%;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 0 120px;
-      position: relative;
+      padding: 0 var(--space-lg);
     }
 
-     /* ============================================
-       HEADER
-       ============================================ */
-    .header {
+    @media (min-width: 1024px) {
+      .container {
+        padding: 0 120px;
+      }
+    }
+
+    /* ========================================
+       HEADER & NAVIGATION
+       ======================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: linear-gradient(180deg, var(--white) 0%, rgba(255, 255, 255, 0.95) 100%);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 128, 255, 0.1);
+    }
+
+    .header-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 80px;
-      position: relative;
-      z-index: 4;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
     }
 
-    /* Brand cluster: animated icon + wordmark + tagline */
-    .brand {
+    @media (min-width: 1024px) {
+      .header-container {
+        padding: 0 120px;
+      }
+    }
+
+    .logo {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 12px;
       text-decoration: none;
+      transition: opacity 160ms;
     }
 
-  .brand-icon {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  display: inline-block;
-  flex-shrink: 0;
-  margin-right: -4px;
-}
-
-.brand-icon spline-viewer {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: none;
-  background: transparent;
-  pointer-events: none;
-}
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-      gap: 4px;
+    .logo:hover {
+      opacity: 0.8;
     }
 
-    .brand-wordmark {
-      height: 48px;
-      width: auto;
-      display: block;
-    }
-
-    .brand-tagline {
-      height: 24px;
-      width: auto;
-      opacity: 0.9;
-      display: block;
-      margin-top: 8px;
-      letter-spacing: 1.2px;
-    }
- 
-    /* Navigation */
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: var(--space-lg);
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--white);
-      font-weight: 500;
-      font-size: var(--font-body);
-      transition: color 160ms cubic-bezier(0.2, 0.6, 0.2, 1);
-      line-height: 1;
-    }
-
-    .nav a:hover {
-      color: var(--light-blue);
-    }
-
-    .nav a:focus-visible {
+    .logo:focus-visible {
       outline: 2px solid var(--azure);
       outline-offset: 4px;
-      border-radius: 2px;
+      border-radius: 4px;
     }
 
- /* ============================================
-   BUTTONS
-   ============================================ */
-.btn {
-  display: inline-block;
-  padding: 12px 32px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: var(--font-body);
-  text-decoration: none;
-  transition: background-color 160ms, color 160ms, border-color 160ms, box-shadow 160ms, transform 160ms;
-  cursor: pointer;
-  border: none;
-  line-height: 1;
-}
-.btn:focus-visible {
-  outline: 2px solid var(--azure);
-  outline-offset: 2px;
-}
-.btn-signin {
-  background: var(--ice-white);
-  color: var(--navy);
-}
-.btn-signin:hover {
-  background: var(--white);
-}
-.btn-primary {
-  padding: 14px 36px;
-  background: var(--azure);
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 700;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 128, 255, 0.3);
-}
-.btn-primary:hover {
-  background: var(--vibrant-teal);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 128, 255, 0.4);
-}
-.btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 128, 255, 0.3);
-}
-.btn-outline {
-  background: transparent;
-  color: var(--white);
-  border: 2px solid rgba(0, 128, 255, 0.6);
-  padding: 10px 30px;
-}
-.btn-outline:hover {
-  background: rgba(132, 156, 188, 0.15);
-  border-color: var(--azure);
-}
-    /* ============================================
-       HERO SECTION
-       ============================================ */
-    .main {
-      position: relative;
-      display: flex;
-      align-items: center;
-      min-height: calc(100vh - 80px);
-      padding: var(--space-xl) 0 var(--space-3xl) 0;
-    }
-
-    .content {
-      max-width: 640px;
-      z-index: 3;
-      animation: ql-fade-up 450ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
-    }
-
-    /* Animated tag */
-    .tag-box {
-      position: relative;
-      width: 290px;
+    .logo-icon {
+      width: 40px;
       height: 40px;
-      border-radius: var(--radius-full);
-      background: var(--grad-secondary);
-      background-size: 200%;
-      animation: gradient-move 2.6s linear infinite;
-      box-shadow: 0 8px 40px rgba(0, 128, 255, 0.25);
-      margin-bottom: 18px;
+      flex-shrink: 0;
     }
 
-    .tag {
-      position: absolute;
-      inset: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--radius-full);
-      background: var(--navy);
-      font-size: var(--font-body-sm);
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .tag .dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      margin-left: var(--space-xs);
-      border-radius: 50%;
-      background: var(--azure);
-      box-shadow: 0 0 12px rgba(0, 128, 255, 0.65);
-    }
-
-    /* Hero typography */
-    .hero-title {
-      margin: 10px 0 14px 0;
-      font-size: clamp(48px, 6vw, var(--font-hero));
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
-    }
-    /* Featured tagline */
-    .tagline-hero {
-      margin: 0 0 12px 0;
-      font-size: 28px;
-      font-weight: 300;
-      letter-spacing: 2px;
-      color: var(--azure);
-      line-height: 1.3;
-    }
-
-    .description {
-      margin: 0 0 26px 0;
-      max-width: 560px;
-      font-size: var(--font-body-lg);
-      color: var(--light-blue);
-      line-height: 1.6;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 14px;
-      margin-top: var(--space-xs);
-    }
-
-    /* 3D Spline viewer */
-   /* 3D Spline viewer */
-    .spline-wrap {
-      position: absolute;
-      right: -8%;
-      top: 0;
-      width: 54vw;
-      max-width: 900px;
-      height: 90vh;
-      min-width: 580px;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overscroll-behavior: contain;
-    }
-
-    .spline-wrap spline-viewer {
-      width: 100%;
-      height: 100%;
+    .logo-icon-spline {
       display: block;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-quanton {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .logo-labs {
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--azure);
+      letter-spacing: 8px;
+      line-height: 1;
+    }
+
+    .primary-nav {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        gap: var(--space-lg);
+      }
+
+      .nav-link {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--navy);
+        text-decoration: none;
+        transition: color 160ms;
+      }
+
+      .nav-link:hover {
+        color: var(--azure);
+      }
+
+      .nav-link:focus-visible {
+        outline: 2px solid var(--azure);
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
+      .btn-sign-in {
+        padding: 10px 24px;
+        background: var(--azure);
+        color: var(--white);
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: var(--font-family);
+        cursor: pointer;
+        transition: background-color 160ms, box-shadow 160ms;
+      }
+
+      .btn-sign-in:hover {
+        background: var(--light-blue);
+        box-shadow: 0 4px 12px rgba(0, 128, 255, 0.2);
+      }
+
+      .btn-sign-in:focus-visible {
+        outline: 2px solid var(--azure);
+        outline-offset: 4px;
+      }
+    }
+
+    .mobile-menu-toggle {
+      display: block;
+      background: none;
       border: none;
-      background: transparent;
+      padding: var(--space-xs);
+      cursor: pointer;
+      color: var(--azure);
+    }
+
+    @media (min-width: 768px) {
+      .mobile-menu-toggle {
+        display: none;
+      }
+    }
+
+    /* ========================================
+       HERO SECTION
+       ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--grad-dark);
+      background-size: 200% 200%;
+      animation: ql-electric-flow 12s linear infinite;
+      padding-top: 80px;
       overflow: hidden;
     }
 
-    /* ============================================
-       FEATURES SECTION
-       ============================================ */
-    .features {
+    .hero-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      padding: 40px 0 80px 0;
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
     }
 
-    .feat {
-      background: rgba(2, 10, 22, 0.35);
-      border: 1px solid rgba(0, 128, 255, 0.15);
-      border-radius: var(--radius-lg);
-      padding: var(--space-md);
-      backdrop-filter: blur(6px);
-      transition: border-color 160ms, box-shadow 160ms;
+    @media (min-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr 1fr;
+        padding: var(--space-3xl) 120px;
+      }
     }
 
-    .feat:hover {
-      border-color: rgba(0, 128, 255, 0.35);
-      box-shadow: 0 4px 16px rgba(0, 128, 255, 0.15);
+    .hero-content {
+      animation: ql-fade-up 450ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+      animation-delay: 200ms;
+      opacity: 0;
     }
 
-    .feat h3 {
-      margin: 0 0 var(--space-xs) 0;
-      font-size: var(--font-h4);
-      font-weight: 600;
+    .hero-headline {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: var(--space-md);
+    }
+
+    @media (min-width: 768px) {
+      .hero-headline {
+        font-size: 56px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-headline {
+        font-size: 64px;
+      }
+    }
+
+    .hero-subheadline {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--light-blue);
+      line-height: 1.6;
+      margin-bottom: var(--space-xl);
+      max-width: 560px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-subheadline {
+        font-size: 20px;
+      }
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      align-items: flex-start;
+    }
+
+    .btn-primary {
+      padding: 14px 36px;
+      background: var(--azure);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: var(--font-family);
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background-color 160ms, box-shadow 160ms;
+    }
+
+    .btn-primary:hover {
+      background: var(--light-blue);
+      box-shadow: 0 4px 12px rgba(0, 128, 255, 0.4);
+    }
+
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 4px;
+    }
+
+    .text-link {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--light-blue);
+      text-decoration: none;
+      transition: color 160ms;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .text-link:hover {
       color: var(--white);
     }
 
-    .feat p {
-      margin: 0;
-      color: var(--light-blue);
-      font-size: var(--font-body);
-      line-height: 1.6;
+    .text-link:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 4px;
+      border-radius: 4px;
     }
 
-    /* ============================================
-       FOOTER
-       ============================================ */
-    .footer {
-      padding: 40px 0 60px 0;
-      color: var(--slate-gray);
-      font-size: var(--font-body-sm);
-      text-align: center;
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: ql-fade-up 450ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+      animation-delay: 400ms;
+      opacity: 0;
     }
 
-    /* ============================================
-       BACKGROUND DECORATIONS
-       ============================================ */
-    .gradient-orb {
-      position: fixed;
-      top: -10%;
-      right: -10%;
-      width: 60vmax;
-      height: 60vmax;
-      background:
-        radial-gradient(35% 35% at 60% 40%, rgba(0, 128, 255, 0.45), rgba(0, 128, 255, 0) 70%),
-        radial-gradient(30% 30% at 40% 60%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 70%);
-      filter: blur(36px);
-      opacity: 0.6;
-      z-index: 1;
-      pointer-events: none;
+    .hero-image {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 8px 24px rgba(0, 128, 255, 0.3));
     }
 
-    .layer-blur {
-      position: fixed;
-      top: 20%;
-      right: 0;
-      width: 30rem;
-      height: 0;
-      box-shadow: 0 0 180px 80px rgba(0, 128, 255, 0.25);
-      transform: rotate(30deg);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-    @media (max-width: 1280px) {
-      .container {
-        padding: 0 60px;
-      }
-      .spline-wrap {
-        width: 52vw;
-        height: 70vh;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .main {
-        padding-top: 40px;
-        align-items: flex-start;
-      }
-      .content {
-        max-width: 620px;
-      }
-      .spline-wrap {
-        width: 80vw;
-        height: 52vh;
-        right: -6%;
-        top: 8%;
-        transform: scale(0.9);
-      }
-      .features {
-        grid-template-columns: 1fr 1fr;
-      }
+    .hero-spline {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      height: 600px;
+      filter: drop-shadow(0 8px 24px rgba(0, 128, 255, 0.3));
     }
 
     @media (max-width: 768px) {
-      .container {
-        padding: 0 20px;
+      .hero-spline {
+        height: 400px;
       }
-      .main {
-        padding: var(--space-sm) 0 60px 0;
-        min-height: auto;
-        flex-direction: column;
-      }
-      .spline-wrap {
-        position: relative;
-        width: 100%;
-        height: 360px;
-        right: auto;
-        top: 12px;
-        transform: none;
-        min-width: 0;
-        margin-top: var(--space-xs);
-        order: 2;
-      }
-      .content {
-        max-width: 100%;
-        order: 1;
-      }
-      .hero-title {
-        font-size: clamp(32px, 8vw, 44px);
-      }
-      .features {
-        grid-template-columns: 1fr;
-      }
-      .nav {
-        display: none; /* Mobile nav would need separate implementation */
-      }
+    }
+
+    /* ========================================
+       MAIN CONTENT AREA
+       ======================================== */
+    .main-content {
+      padding-top: 80px;
+    }
+
+    /* Placeholder sections for future development */
+    .section {
+      padding: var(--space-3xl) 0;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* ========================================
+       FOOTER (Placeholder)
+       ======================================== */
+    .site-footer {
+      background: var(--navy);
+      color: var(--light-blue);
+      padding: var(--space-2xl) 0;
+      margin-top: var(--space-3xl);
+    }
+
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      text-align: center;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--light-blue);
+      letter-spacing: 2px;
     }
   </style>
 </head>
-
 <body>
-  <!-- Skip link for accessibility -->
-  <a href="#main" class="skip-link">Skip to main content</a>
+  <a href="#main" class="visually-hidden">Skip to main content</a>
 
-  <!-- Background decorations -->
-  <div class="gradient-orb" aria-hidden="true"></div>
-  <div class="layer-blur" aria-hidden="true"></div>
-
-  <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <!-- Brand cluster: animated icon + wordmark + tagline -->
-      <a href="/" class="brand">
-        <span class="brand-icon">
-          <spline-viewer
-            url="https://prod.spline.design/kB5uggRDtZq4lfzT/scene.splinecode"
-            loading="lazy"
-            touch-action="none"
-            aria-label="Quanton Labs animated quantum node icon">
-          </spline-viewer>
-        </span>
-
-        <span class="brand-text">
-          <img src="images/QL_wordmark_light.svg" alt="Quanton Labs" class="brand-wordmark">
-   
-        </span>
+  <header class="site-header">
+    <div class="header-container">
+      <a href="/" class="logo" aria-label="Quanton Labs Homepage">
+        <spline-viewer url="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode" class="logo-icon-spline"></spline-viewer>
+        <div class="logo-text">
+          <span class="logo-quanton">QUANTON</span>
+          <span class="logo-labs">LABS</span>
+        </div>
       </a>
 
-      <!-- Primary navigation -->
-      <nav class="nav" aria-label="Primary">
-        <a href="#company">Company</a>
-        <a href="#features">Features</a>
-        <a href="#resources">Resources</a>
-        <a href="#docs">Docs</a>
-      <a href="#signin" class="btn btn-primary">Sign in</a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="#company" class="nav-link">Company</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#resources" class="nav-link">Resources</a>
+        <a href="#docs" class="nav-link">Docs</a>
+        <button class="btn-sign-in">Sign in</button>
       </nav>
-    </header>
 
-    <!-- Main content -->
-    <main class="main" id="main">
-      <section class="content">
-        <div class="tag-box">
-          <div class="tag">Introducing Growth OS <span class="dot"></span></div>
+      <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="main-content">
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-headline">Intelligent Operating Systems for Growth-Stage Businesses</h1>
+          <p class="hero-subheadline">Deploy complete operating systems for growth-stage businesses. Transform operational chaos into systematic intelligence with AI-integrated infrastructure.</p>
+          <div class="hero-cta-group">
+            <a href="#contact" class="btn-primary">Schedule Discovery Call</a>
+            <a href="#growth-os" class="text-link">
+              Learn about Growth OS
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 12l4-4-4-4"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <p class="tagline-hero">The Architecture of Intelligent Business</p>
 
-        <h1 class="hero-title">Intelligent Operating Systems for Growth-Stage Businesses</h1>
-
-        <p class="description">
-          Deploy complete operating systems for growth-stage businesses. Transform operational chaos into systematic intelligence with AI-integrated infrastructure.
-        </p>
-
-        <div class="buttons">
-          <a href="#get-started" class="btn btn-outline">Get started</a>
-          <a href="#learn-more" class="btn btn-primary">Learn more</a>
+        <div class="hero-visual">
+          <spline-viewer url="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode" class="hero-spline"></spline-viewer>
         </div>
-      </section>
-
-      <!-- Spline 3D Model: hero -->
-      <div class="spline-wrap" id="splineWrap">
-        <spline-viewer
-          loading="lazy"
-          touch-action="pan-y"
-          url="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode"
-          aria-label="Interactive 3D visualization of Growth OS architecture">
-        </spline-viewer>
-       
       </div>
-    </main>
-
-    <!-- Features section -->
-    <section id="features" class="features">
-      <article class="feat">
-        <h3>Strategy System</h3>
-        <p>Define objectives, growth metrics, and strategic priorities. Establish clarity between vision and execution.</p>
-      </article>
-      <article class="feat">
-        <h3>Platform System</h3>
-        <p>Build intelligent infrastructure connecting digital systems, brand assets, and intelligence layers.</p>
-      </article>
-      <article class="feat">
-        <h3>Operations System</h3>
-        <p>Govern execution through service delivery, compliance, and quality assurance protocols.</p>
-      </article>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2025 Quanton Labs. All rights reserved.</p>
-    </footer>
-  </div>
+    <!-- Future sections will be added here -->
+  </main>
 
-  <!-- Wheel-zoom guard for hero Spline -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="footer-tagline">THE ARCHITECTURE OF INTELLIGENT BUSINESS</p>
+    </div>
+  </footer>
+
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.99/build/spline-viewer.js"></script>
   <script>
-    (function() {
-      const wrap = document.getElementById('splineWrap');
-      if (wrap) {
-        wrap.addEventListener('wheel', function(e) {
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const primaryNav = document.querySelector('.primary-nav');
+
+    if (menuToggle && primaryNav) {
+      menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+        // Mobile menu implementation will be completed in future iterations
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '') {
           e.preventDefault();
-          window.scrollBy(0, e.deltaY);
-        }, { passive: false });
-      }
-    })();
-  </script>
-
-  <!-- Kickstart header icon animation -->
-  <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      const viewer = document.querySelector('.brand-icon spline-viewer');
-      if (!viewer) return;
-      
-      setTimeout(function() {
-        try {
-          const canvas = viewer.shadowRoot?.querySelector('canvas');
-          if (canvas) {
-            const evt = new MouseEvent('mousemove', {
-              bubbles: true,
-              clientX: 1,
-              clientY: 1
-            });
-            canvas.dispatchEvent(evt);
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
           }
-        } catch(e) {
-          // Silent fail if shadow DOM access denied
         }
-      }, 300);
+      });
     });
   </script>
-  </script>
-
-  <!-- Main JavaScript -->
-  <script src="assets/js/main.js"></script>
 </body>
 </html>
