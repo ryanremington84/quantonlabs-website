@@ -241,57 +241,60 @@
       border-radius: 2px;
     }
 
-    /* ============================================
-       BUTTONS
-       ============================================ */
-    .btn {
-      display: inline-block;
-      padding: 12px 32px;
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      font-size: var(--font-body);
-      text-decoration: none;
-      transition: background-color 160ms, color 160ms, border-color 160ms, box-shadow 160ms;
-      cursor: pointer;
-      border: none;
-      line-height: 1;
-    }
-
-    .btn:focus-visible {
-      outline: 2px solid var(--azure);
-      outline-offset: 2px;
-    }
-
-    .btn-signin {
-      background: var(--ice-white);
-      color: var(--navy);
-    }
-
-    .btn-signin:hover {
-      background: var(--white);
-    }
-
-    .btn-primary {
-      background: var(--azure);
-      color: var(--white);
-    }
-
-    .btn-primary:hover {
-      background: var(--medium-blue);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border: 2px solid rgba(0, 128, 255, 0.6);
-      padding: 10px 30px;
-    }
-
-    .btn-outline:hover {
-      background: rgba(132, 156, 188, 0.15);
-      border-color: var(--azure);
-    }
-
+ /* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: var(--font-body);
+  text-decoration: none;
+  transition: background-color 160ms, color 160ms, border-color 160ms, box-shadow 160ms, transform 160ms;
+  cursor: pointer;
+  border: none;
+  line-height: 1;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--azure);
+  outline-offset: 2px;
+}
+.btn-signin {
+  background: var(--ice-white);
+  color: var(--navy);
+}
+.btn-signin:hover {
+  background: var(--white);
+}
+.btn-primary {
+  padding: 14px 36px;
+  background: var(--azure);
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 128, 255, 0.3);
+}
+.btn-primary:hover {
+  background: var(--vibrant-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 128, 255, 0.4);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 128, 255, 0.3);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(0, 128, 255, 0.6);
+  padding: 10px 30px;
+}
+.btn-outline:hover {
+  background: rgba(132, 156, 188, 0.15);
+  border-color: var(--azure);
+}
     /* ============================================
        HERO SECTION
        ============================================ */
