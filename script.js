@@ -3,6 +3,31 @@
    Version 1.0 | November 2025
    ========================================================= */
 
+// Utilities first
+function throttle(fn, wait) {
+  let lastTime = 0;
+  let timeout;
+  
+  return function() {
+    const now = Date.now();
+    const remaining = wait - (now - lastTime);
+    const args = arguments;
+    const context = this;
+    
+    if (remaining <= 0) {
+      clearTimeout(timeout);
+      lastTime = now;
+      fn.apply(context, args);
+    } else {
+      clearTimeout(timeout);
+      timeout = setTimeout(function() {
+        lastTime = Date.now();
+        fn.apply(context, args);
+      }, remaining);
+    }
+  };
+}
+
 // 1) Respect motion preferences
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -50,7 +75,7 @@ window.addEventListener('resize', throttle(setViewportHeight, 150));
 })();
 
 // 5) Subtle ripple effect on buttons
-document.querySelectorAll('.btn').forEach(function(btn) {
+document.querySelectorAll('button[class*="btn"], a[class*="btn"]').forEach(function(btn) {
   btn.addEventListener('click', function(e) {
     if (prefersReducedMotion) return;
     
@@ -72,27 +97,21 @@ document.querySelectorAll('.btn').forEach(function(btn) {
   });
 });
 
-// 6) Throttle utility
-function throttle(fn, wait) {
-  let lastTime = 0;
-  let timeout;
+// 6) Spline scroll fix - allow page scroll while preserving interaction
+document.addEventListener('DOMContentLoaded', function() {
+  const splineViewers = document.querySelectorAll('spline-viewer');
   
-  return function() {
-    const now = Date.now();
-    const remaining = wait - (now - lastTime);
-    const args = arguments;
-    const context = this;
+  splineViewers.forEach(viewer => {
+    // Disable pointer-events briefly during scroll
+    let scrollTimeout;
     
-    if (remaining <= 0) {
-      clearTimeout(timeout);
-      lastTime = now;
-      fn.apply(context, args);
-    } else {
-      clearTimeout(timeout);
-      timeout = setTimeout(function() {
-        lastTime = Date.now();
-        fn.apply(context, args);
-      }, remaining);
-    }
-  };
-}
+    window.addEventListener('wheel', function() {
+      viewer.style.pointerEvents = 'none';
+      
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        viewer.style.pointerEvents = 'auto';
+      }, 100);
+    }, { passive: true });
+  });
+});
