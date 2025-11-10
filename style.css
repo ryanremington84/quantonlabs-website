@@ -384,11 +384,11 @@ body {
 }
 /* Brand cluster in header: animated icon + wordmark + tagline */
 .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
-.brand-icon{ position:relative; width:36px; height:36px; display:inline-block; }
+.brand-icon{ position:relative; width:72px; height:72px; display:inline-block; }
 .brand-icon spline-viewer{ width:100%; height:100%; display:block; }
 .brand-text{ display:flex; flex-direction:column; line-height:1; }
-.brand-wordmark{ height:18px; width:auto; display:block; }
-.brand-tagline{ height:12px; width:auto; margin-top:4px; opacity:.9; display:block; }
+.brand-wordmark{ height:28px; width:auto; display:block; }
+.brand-tagline{ height: 18px; width: auto; margin-top: 6px; opacity: .9; }
 
 /* Alignment and interaction refinements */
 .brand-icon { flex: 0 0 36px; }              /* fixed width for the Spline container */
