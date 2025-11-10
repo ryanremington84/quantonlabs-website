@@ -1,48 +1,164 @@
+// File: index.html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Quanton Labs — Interactive 3D Hero</title>
+  <title>Quanton Labs — The Architecture of Intelligent Business</title>
+  <meta name="description" content="AI-integrated operating systems for growth-stage businesses. Deploy Growth OS and transform operational chaos into systematic intelligence.">
 
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <!-- Spline Viewer -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.60/build/spline-viewer.js"></script>
 
   <style>
-    /* Reset and Base */
-    *, *::before, *::after { box-sizing: border-box; }
+    /* ============================================
+       CSS VARIABLES - BRAND TOKENS
+       ============================================ */
+    :root {
+      /* Brand Colors */
+      --navy: #041227;
+      --azure: #0080FF;
+      --dark-blue: #175581;
+      --medium-blue: #31769e;
+      --light-blue: #849cbc;
+      --vibrant-teal: #408c9c;
+      --ice-white: #F3F3F3;
+      --white: #FFFFFF;
+      --slate-gray: #6B7280;
+      
+      /* Brand Gradients */
+      --grad-electric: linear-gradient(90deg, #041227 0%, #1a3d66 18%, #0080FF 35%, #FFFFFF 48%, #5999cc 62%, #0080FF 80%, #1a3d66 100%);
+      --grad-secondary: linear-gradient(90deg, #175581 0%, #31769e 50%, #408c9c 100%);
+      --grad-dark: linear-gradient(180deg, #041227 0%, #0d1b2a 50%, #1b263b 100%);
+      
+      /* Spacing Scale (8px base) */
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 32px;
+      --space-xl: 48px;
+      --space-2xl: 64px;
+      --space-3xl: 96px;
+      
+      /* Typography Scale */
+      --font-hero: 64px;
+      --font-h1: 48px;
+      --font-h2: 36px;
+      --font-h3: 28px;
+      --font-h4: 20px;
+      --font-body-lg: 18px;
+      --font-body: 16px;
+      --font-body-sm: 14px;
+      
+      /* Border Radius */
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 50px;
+    }
+
+    /* ============================================
+       BRAND KEYFRAMES
+       ============================================ */
+    @keyframes ql-electric-flow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    @keyframes ql-fade-up {
+      from { 
+        opacity: 0; 
+        transform: translateY(8px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    @keyframes gradient-move {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* ============================================
+       REDUCED MOTION
+       ============================================ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after { 
+      box-sizing: border-box; 
+      margin: 0;
+      padding: 0;
+    }
+    
     html, body { height: 100%; }
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    :target { scroll-margin-top: 96px; }
+    
+    html { 
+      scroll-behavior: smooth; 
+    }
+    
+    @media (prefers-reduced-motion: reduce) { 
+      html { scroll-behavior: auto; } 
+    }
+    
+    :target { 
+      scroll-margin-top: 96px; 
+    }
 
     body {
-      margin: 0;
       font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      color: #ffffff;
-      background: linear-gradient(180deg, #041227 0%, #0d1b2a 50%, #1b263b 100%);
+      color: var(--white);
+      background: var(--grad-dark);
       line-height: 1.6;
+      font-size: var(--font-body);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
-    /* Layout */
+    /* ============================================
+       LAYOUT
+       ============================================ */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--azure);
+      color: var(--white);
+      padding: 8px 16px;
+      text-decoration: none;
+      z-index: 100;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
     .container {
       width: 100%;
       max-width: 1440px;
       margin: 0 auto;
       padding: 0 120px;
       position: relative;
-      overflow: hidden;
     }
 
-    /* Header */
+    /* ============================================
+       HEADER
+       ============================================ */
     .header {
       display: flex;
       align-items: center;
@@ -52,113 +168,203 @@
       z-index: 4;
     }
 
-    /* Brand cluster in header: animated icon + wordmark + tagline */
-    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
-    .brand-icon{ position:relative; width:36px; height:36px; display:inline-block; }
-    .brand-icon spline-viewer{ width:100%; height:100%; display:block; }
-    .brand-text{ display:flex; flex-direction:column; line-height:1; }
-    .brand-wordmark{ height:18px; width:auto; display:block; }
-    .brand-tagline{ height:12px; width:auto; margin-top:4px; opacity:.9; display:block; }
+    /* Brand cluster: animated icon + wordmark + tagline */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
 
-    /* Nav */
-    .nav { display: flex; align-items: center; gap: 32px; }
+    .brand-icon {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .brand-icon spline-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      gap: 4px;
+    }
+
+    .brand-wordmark {
+      height: 18px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-tagline {
+      height: 12px;
+      width: auto;
+      opacity: 0.9;
+      display: block;
+    }
+
+    /* Navigation */
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
     .nav a {
       text-decoration: none;
-      color: #ffffff;
+      color: var(--white);
       font-weight: 500;
-      font-size: 16px;
-      transition: color 180ms ease;
+      font-size: var(--font-body);
+      transition: color 160ms cubic-bezier(0.2, 0.6, 0.2, 1);
       line-height: 1;
     }
-    .nav a:hover { color: #9fb5cd; }
 
-    /* Buttons */
+    .nav a:hover {
+      color: var(--light-blue);
+    }
+
+    .nav a:focus-visible {
+      outline: 2px solid var(--azure);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* ============================================
+       BUTTONS
+       ============================================ */
     .btn {
       display: inline-block;
-      padding: 12px 28px;
-      border-radius: 10px;
+      padding: 12px 32px;
+      border-radius: var(--radius-sm);
       font-weight: 600;
+      font-size: var(--font-body);
       text-decoration: none;
-      transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 120ms ease;
+      transition: background-color 160ms, color 160ms, border-color 160ms, box-shadow 160ms;
       cursor: pointer;
-      position: relative; overflow: hidden;
+      border: none;
+      line-height: 1;
     }
-    .btn:active { transform: translateY(1px); }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--azure);
+      outline-offset: 2px;
+    }
 
     .btn-signin {
-      background: #e5e7eb;
-      color: #041227;
+      background: var(--ice-white);
+      color: var(--navy);
     }
-    .btn-signin:hover { background: #cbd5e1; }
+
+    .btn-signin:hover {
+      background: var(--white);
+    }
 
     .btn-primary {
-      background: #0080FF;
-      color: #ffffff;
+      background: var(--azure);
+      color: var(--white);
     }
-    .btn-primary:hover { background: #31769e; }
+
+    .btn-primary:hover {
+      background: var(--medium-blue);
+    }
 
     .btn-outline {
       background: transparent;
-      color: #ffffff;
-      border: 2px solid rgba(0,128,255,0.6);
-    }
-    .btn-outline:hover {
-      background: rgba(132,156,188,0.15);
-      border-color: #0080FF;
+      color: var(--white);
+      border: 2px solid rgba(0, 128, 255, 0.6);
+      padding: 10px 30px;
     }
 
-    /* Hero Section */
+    .btn-outline:hover {
+      background: rgba(132, 156, 188, 0.15);
+      border-color: var(--azure);
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
     .main {
       position: relative;
       display: flex;
       align-items: center;
       min-height: calc(100vh - 80px);
-      padding: 48px 0 96px 0;
+      padding: var(--space-xl) 0 var(--space-3xl) 0;
     }
-    .content { max-width: 640px; z-index: 3; }
 
+    .content {
+      max-width: 640px;
+      z-index: 3;
+      animation: ql-fade-up 450ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+    }
+
+    /* Animated tag */
     .tag-box {
       position: relative;
       width: 290px;
       height: 40px;
-      border-radius: 50px;
-      background: linear-gradient(90deg, #175581 0%, #31769e 50%, #408c9c 100%);
+      border-radius: var(--radius-full);
+      background: var(--grad-secondary);
       background-size: 200%;
       animation: gradient-move 2.6s linear infinite;
-      box-shadow: 0 8px 40px rgba(0,128,255,0.25);
+      box-shadow: 0 8px 40px rgba(0, 128, 255, 0.25);
       margin-bottom: 18px;
     }
+
     .tag {
       position: absolute;
       inset: 3px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50px;
-      background: #041227;
-      font-size: 14px; font-weight: 700; color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-full);
+      background: var(--navy);
+      font-size: var(--font-body-sm);
+      font-weight: 700;
+      color: var(--white);
     }
-    .tag .dot {
-      display: inline-block; width: 8px; height: 8px; margin-left: 8px;
-      border-radius: 50%; background: #0080FF;
-      box-shadow: 0 0 12px rgba(0,128,255,0.65);
-    }
-    @keyframes gradient-move { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
+    .tag .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-left: var(--space-xs);
+      border-radius: 50%;
+      background: var(--azure);
+      box-shadow: 0 0 12px rgba(0, 128, 255, 0.65);
+    }
+
+    /* Hero typography */
     .hero-title {
       margin: 10px 0 14px 0;
-      font-size: clamp(40px, 6vw, 64px);
+      font-size: clamp(48px, 6vw, var(--font-hero));
       font-weight: 800;
       letter-spacing: -1px;
+      line-height: 1.1;
     }
+
     .description {
       margin: 0 0 26px 0;
       max-width: 560px;
-      font-size: 18px;
-      color: #cbd5e1;
+      font-size: var(--font-body-lg);
+      color: var(--light-blue);
+      line-height: 1.6;
     }
-    .buttons { display: flex; gap: 14px; margin-top: 8px; }
 
-    /* 3D viewer */
-    .hero-3d {
+    .buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: var(--space-xs);
+    }
+
+    /* 3D Spline viewer */
+    .spline-wrap {
       position: absolute;
       top: -12px;
       right: 0;
@@ -168,109 +374,201 @@
       z-index: 2;
       overscroll-behavior: contain;
     }
-    /* Spline zoom guard and scroll cue for hero */
-    .spline-wrap{ position:absolute; inset:-12px 0 0 auto; right:0; width:55vw; height:80vh; min-width:520px; z-index:2; overscroll-behavior:contain; }
-    .scroll-cue{ position:absolute; left:50%; bottom:24px; transform:translateX(-50%); font-size:12px; color:#ffffff; opacity:.7; pointer-events:none; }
 
-    /* Features */
+    .spline-wrap spline-viewer {
+      width: 100%;
+      height: 100%;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: var(--white);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* ============================================
+       FEATURES SECTION
+       ============================================ */
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 28px;
       padding: 40px 0 80px 0;
     }
+
     .feat {
       background: rgba(2, 10, 22, 0.35);
-      border: 1px solid rgba(0,128,255,0.15);
-      border-radius: 16px;
-      padding: 22px;
+      border: 1px solid rgba(0, 128, 255, 0.15);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
       backdrop-filter: blur(6px);
+      transition: border-color 160ms, box-shadow 160ms;
     }
-    .feat h3 { margin: 0 0 8px 0; font-size: 18px; }
-    .feat p { margin: 0; color: #cfe0ee; }
 
-    /* Footer */
-    .footer { padding: 40px 0 60px 0; color: #9fb5cd; font-size: 14px; text-align: center; }
+    .feat:hover {
+      border-color: rgba(0, 128, 255, 0.35);
+      box-shadow: 0 4px 16px rgba(0, 128, 255, 0.15);
+    }
 
-    /* Background Decorations */
+    .feat h3 {
+      margin: 0 0 var(--space-xs) 0;
+      font-size: var(--font-h4);
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .feat p {
+      margin: 0;
+      color: var(--light-blue);
+      font-size: var(--font-body);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      padding: 40px 0 60px 0;
+      color: var(--slate-gray);
+      font-size: var(--font-body-sm);
+      text-align: center;
+    }
+
+    /* ============================================
+       BACKGROUND DECORATIONS
+       ============================================ */
     .gradient-orb {
       position: fixed;
       top: -10%;
       right: -10%;
-      width: 60vmax; height: 60vmax;
+      width: 60vmax;
+      height: 60vmax;
       background:
-        radial-gradient(35% 35% at 60% 40%, rgba(0,128,255,0.45), rgba(0,128,255,0) 70%),
-        radial-gradient(30% 30% at 40% 60%, rgba(255,255,255,0.25), rgba(255,255,255,0) 70%);
+        radial-gradient(35% 35% at 60% 40%, rgba(0, 128, 255, 0.45), rgba(0, 128, 255, 0) 70%),
+        radial-gradient(30% 30% at 40% 60%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 70%);
       filter: blur(36px);
       opacity: 0.6;
       z-index: 1;
       pointer-events: none;
     }
+
     .layer-blur {
       position: fixed;
       top: 20%;
       right: 0;
-      width: 30rem; height: 0;
-      box-shadow: 0 0 180px 80px rgba(0,128,255,0.25);
+      width: 30rem;
+      height: 0;
+      box-shadow: 0 0 180px 80px rgba(0, 128, 255, 0.25);
       transform: rotate(30deg);
       z-index: 0;
       pointer-events: none;
     }
 
-    /* Reduced-motion fallback */
-    @media (prefers-reduced-motion: reduce){
-      .brand-icon spline-viewer{ display:none; }
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1280px) {
+      .container {
+        padding: 0 60px;
+      }
+      .spline-wrap {
+        width: 52vw;
+        height: 70vh;
+      }
     }
 
-    /* Responsive */
-    @media (max-width: 1280px) {
-      .container { padding: 0 60px; }
-      .hero-3d { width: 52vw; height: 70vh; }
-    }
     @media (max-width: 1024px) {
-      .main { padding-top: 40px; align-items: flex-start; }
-      .content { max-width: 620px; }
-      .hero-3d { width: 80vw; height: 52vh; right: -6%; top: 8%; transform: scale(0.9); }
-      .features { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .container { padding: 0 20px; }
-      .main { padding: 16px 0 60px 0; min-height: auto; }
-      .hero-3d {
-        position: relative; width: 100%; height: 360px;
-        right: auto; top: 12px; transform: none; min-width: 0; margin-top: 8px;
+      .main {
+        padding-top: 40px;
+        align-items: flex-start;
       }
-      .content { max-width: 100%; }
-      .hero-title { font-size: clamp(32px, 8vw, 44px); }
-      .features { grid-template-columns: 1fr; }
+      .content {
+        max-width: 620px;
+      }
+      .spline-wrap {
+        width: 80vw;
+        height: 52vh;
+        right: -6%;
+        top: 8%;
+        transform: scale(0.9);
+      }
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+      .main {
+        padding: var(--space-sm) 0 60px 0;
+        min-height: auto;
+        flex-direction: column;
+      }
+      .spline-wrap {
+        position: relative;
+        width: 100%;
+        height: 360px;
+        right: auto;
+        top: 12px;
+        transform: none;
+        min-width: 0;
+        margin-top: var(--space-xs);
+        order: 2;
+      }
+      .content {
+        max-width: 100%;
+        order: 1;
+      }
+      .hero-title {
+        font-size: clamp(32px, 8vw, 44px);
+      }
+      .features {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        display: none; /* Mobile nav would need separate implementation */
+      }
     }
   </style>
 </head>
 
 <body>
+  <!-- Skip link for accessibility -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Background decorations -->
   <div class="gradient-orb" aria-hidden="true"></div>
   <div class="layer-blur" aria-hidden="true"></div>
 
   <div class="container">
-    <header class="header" data-aos="fade-down" data-aos-duration="1200">
+    <!-- Header -->
+    <header class="header">
       <!-- Brand cluster: animated icon + wordmark + tagline -->
-  <a href="/" class="brand">
-  <span class="brand-icon">
-    <spline-viewer
-      url="https://prod.spline.design/kB5uggRDtZq4lfzT/scene.splinecode"
-      loading="lazy" touch-action="none"
-      aria-label="Quanton Labs animated icon">
-    </spline-viewer>
-  </span>
+      <a href="/" class="brand">
+        <span class="brand-icon">
+          <spline-viewer
+            url="https://prod.spline.design/kB5uggRDtZq4lfzT/scene.splinecode"
+            loading="lazy"
+            touch-action="none"
+            aria-label="Quanton Labs animated quantum node icon">
+          </spline-viewer>
+        </span>
 
-  <span class="brand-text">
-    <img src="images/QL_wordmark_light.svg" alt="Quanton Labs" class="brand-wordmark">
-    <img src="images/QL_tagline_light.svg" alt="The Architecture of Intelligent Business" class="brand-tagline">
-  </span>
-</a>
+        <span class="brand-text">
+          <img src="images/QL_wordmark_light.svg" alt="Quanton Labs" class="brand-wordmark" width="140" height="18">
+          <img src="images/QL_tagline_light.svg" alt="The Architecture of Intelligent Business" class="brand-tagline" width="200" height="12">
+        </span>
+      </a>
 
-
-      <nav class="nav">
+      <!-- Primary navigation -->
+      <nav class="nav" aria-label="Primary">
         <a href="#company">Company</a>
         <a href="#features">Features</a>
         <a href="#resources">Resources</a>
@@ -279,83 +577,92 @@
       </nav>
     </header>
 
-    <main class="main">
+    <!-- Main content -->
+    <main class="main" id="main">
       <section class="content">
-        <div class="tag-box" data-aos="fade-zoom-in" data-aos-duration="1400">
-          <div class="tag">Introducing • <span class="dot"></span></div>
+        <div class="tag-box">
+          <div class="tag">Introducing Growth OS <span class="dot"></span></div>
         </div>
 
-        <h1 class="hero-title" data-aos="fade-zoom-in" data-aos-duration="1700">Immersive 3D, simplified</h1>
+        <h1 class="hero-title">The Architecture of Intelligent Business</h1>
 
-        <p class="description" data-aos="fade-zoom-in" data-aos-duration="1900">
-          A minimal template that blends responsive UI with a live Spline scene. Pure HTML, CSS, and one script include, fully responsive and fast to deploy.
+        <p class="description">
+          Deploy complete operating systems for growth-stage businesses. Transform operational chaos into systematic intelligence with AI-integrated infrastructure.
         </p>
 
-        <div class="buttons" data-aos="fade-zoom-in" data-aos-duration="2100">
+        <div class="buttons">
           <a href="#get-started" class="btn btn-outline">Get started</a>
           <a href="#learn-more" class="btn btn-primary">Learn more</a>
         </div>
       </section>
 
       <!-- Spline 3D Model: hero -->
-      <div class="hero-3d spline-wrap" id="splineWrap">
+      <div class="spline-wrap" id="splineWrap">
         <spline-viewer
-          data-aos="fade-zoom-in" data-aos-duration="2200"
-          loading="lazy" touch-action="pan-y"
-          url="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode">
+          loading="lazy"
+          touch-action="pan-y"
+          url="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode"
+          aria-label="Interactive 3D visualization of Growth OS architecture">
         </spline-viewer>
-        <div class="scroll-cue">Scroll</div>
+        <div class="scroll-cue" aria-hidden="true">Scroll</div>
       </div>
     </main>
 
+    <!-- Features section -->
     <section id="features" class="features">
-      <div class="feat" data-aos="fade-up" data-aos-duration="900">
-        <h3>No build tools</h3>
-        <p>Open index.html and you are live. Add your copy, ship quickly, iterate faster.</p>
-      </div>
-      <div class="feat" data-aos="fade-up" data-aos-duration="1100">
-        <h3>Spline native</h3>
-        <p>Embed any Spline Public URL. Keep interactivity, camera, and materials intact.</p>
-      </div>
-      <div class="feat" data-aos="fade-up" data-aos-duration="1300">
-        <h3>Brand aligned</h3>
-        <p>Quantum Blue accents, crisp typography, and layered depth for executive polish.</p>
-      </div>
+      <article class="feat">
+        <h3>Strategy System</h3>
+        <p>Define objectives, growth metrics, and strategic priorities. Establish clarity between vision and execution.</p>
+      </article>
+      <article class="feat">
+        <h3>Platform System</h3>
+        <p>Build intelligent infrastructure connecting digital systems, brand assets, and intelligence layers.</p>
+      </article>
+      <article class="feat">
+        <h3>Operations System</h3>
+        <p>Govern execution through service delivery, compliance, and quality assurance protocols.</p>
+      </article>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
-      <p>© Quanton Labs. All rights reserved.</p>
+      <p>&copy; 2025 Quanton Labs. All rights reserved.</p>
     </footer>
   </div>
 
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script> AOS.init({ once: true }); </script>
-
   <!-- Wheel-zoom guard for hero Spline -->
   <script>
-    const wrap = document.getElementById('splineWrap');
-    if (wrap) {
-      wrap.addEventListener('wheel', e => {
-        e.preventDefault();
-        window.scrollBy(0, e.deltaY);
-      }, { passive:false });
-    }
+    (function() {
+      const wrap = document.getElementById('splineWrap');
+      if (wrap) {
+        wrap.addEventListener('wheel', function(e) {
+          e.preventDefault();
+          window.scrollBy(0, e.deltaY);
+        }, { passive: false });
+      }
+    })();
   </script>
 
-  <!-- Optional: kickstart header icon if your Spline requires "Any input" -->
+  <!-- Kickstart header icon animation -->
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', function() {
       const viewer = document.querySelector('.brand-icon spline-viewer');
       if (!viewer) return;
-      setTimeout(() => {
+      
+      setTimeout(function() {
         try {
           const canvas = viewer.shadowRoot?.querySelector('canvas');
           if (canvas) {
-            const evt = new MouseEvent('mousemove', {bubbles:true, clientX:1, clientY:1});
+            const evt = new MouseEvent('mousemove', {
+              bubbles: true,
+              clientX: 1,
+              clientY: 1
+            });
             canvas.dispatchEvent(evt);
           }
-        } catch(e){}
+        } catch(e) {
+          // Silent fail if shadow DOM access denied
+        }
       }, 300);
     });
   </script>
