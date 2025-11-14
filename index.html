@@ -1,569 +1,848 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Quanton Labs deploys AI-integrated operating systems for growth-stage businesses generating $1M-$20M annually.">
-  <title>Quanton Labs — The Architecture of Intelligent Business</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <meta charset="UTF-8" />
+  <title>Quanton Labs · Intelligent Operating Systems for Growth-Stage Businesses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    /* ========================================
-       CSS RESET & BASE STYLES
-       ======================================== */
-    *, *::before, *::after {
+    /* =========================================================
+       Quanton Labs — Embedded Styles
+       ========================================================= */
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
-    /* ========================================
-       CSS VARIABLES (BRAND TOKENS)
-       ======================================== */
-    :root {
-      /* Colors */
-      --navy: #041227;
-      --azure: #0080FF;
-      --dark-blue: #175581;
-      --medium-blue: #31769e;
-      --light-blue: #849cbc;
-      --vibrant-teal: #408c9c;
-      --white: #FFFFFF;
-      --ice-white: #F3F3F3;
-      --slate-gray: #6B7280;
-
-      /* Gradients */
-      --grad-electric: linear-gradient(90deg, #041227 0%, #1a3d66 18%, #0080FF 35%, #FFFFFF 48%, #5999cc 62%, #0080FF 80%, #1a3d66 100%);
-      --grad-secondary: linear-gradient(90deg, #175581 0%, #31769e 50%, #408c9c 100%);
-      --grad-dark: linear-gradient(180deg, #041227 0%, #0d1b2a 50%, #1b263b 100%);
-
-      /* Spacing (8px scale) */
-      --space-xs: 8px;
-      --space-sm: 16px;
-      --space-md: 24px;
-      --space-lg: 32px;
-      --space-xl: 48px;
-      --space-2xl: 64px;
-      --space-3xl: 96px;
-
-      /* Typography */
-      --font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-
-      /* Breakpoints (defined for media queries) */
-      --breakpoint-sm: 640px;
-      --breakpoint-md: 768px;
-      --breakpoint-lg: 1024px;
-      --breakpoint-xl: 1280px;
+    html,
+    body {
+      height: 100%;
     }
 
-    /* ========================================
-       KEYFRAME ANIMATIONS
-       ======================================== */
-    @keyframes ql-electric-flow {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-
-    @keyframes ql-fade-up {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Disable animations for users who prefer reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
-
-    /* ========================================
-       BASE TYPOGRAPHY & LAYOUT
-       ======================================== */
     html {
-      font-size: 16px;
       scroll-behavior: smooth;
     }
 
-    body {
-      font-family: var(--font-family);
-      font-weight: 400;
-      line-height: 1.6;
-      color: var(--navy);
-      background-color: var(--white);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* ========================================
-       UTILITY CLASSES
-       ======================================== */
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    .container {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 var(--space-lg);
-    }
-
-    @media (min-width: 1024px) {
-      .container {
-        padding: 0 120px;
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
       }
     }
 
-    /* ========================================
-       HEADER & NAVIGATION
-       ======================================== */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: linear-gradient(180deg, var(--white) 0%, rgba(255, 255, 255, 0.95) 100%);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(0, 128, 255, 0.1);
+    :target {
+      scroll-margin-top: 96px;
     }
 
-    .header-container {
+    body {
+      margin: 0;
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
+      color: #ffffff;
+      background: radial-gradient(circle at top left, #0b1f3a 0%, #041227 35%, #020817 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+
+    .ql-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+
+    .ql-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(
+        to bottom,
+        rgba(4, 10, 20, 0.94),
+        rgba(4, 10, 20, 0.92),
+        rgba(4, 10, 20, 0.86)
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .ql-header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 80px;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 var(--space-lg);
+      padding: 14px 24px;
     }
 
-    @media (min-width: 1024px) {
-      .header-container {
-        padding: 0 120px;
-      }
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      transition: opacity 160ms;
-    }
-
-    .logo:hover {
-      opacity: 0.8;
-    }
-
-    .logo:focus-visible {
-      outline: 2px solid var(--azure);
-      outline-offset: 4px;
-      border-radius: 4px;
-    }
-
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-    }
-
-    .logo-icon-spline {
-      display: block;
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-    }
-    .logo-wordmark {
-  height: 32px;
-  width: auto;
-  flex-shrink: 0;
-}
-    .primary-nav {
-      display: none;
-    }
-
-    @media (min-width: 768px) {
-      .primary-nav {
-        display: flex;
-        align-items: center;
-        gap: var(--space-lg);
-      }
-
-      .nav-link {
-        font-size: 16px;
-        font-weight: 500;
-        color: var(--navy);
-        text-decoration: none;
-        transition: color 160ms;
-      }
-
-      .nav-link:hover {
-        color: var(--azure);
-      }
-
-      .nav-link:focus-visible {
-        outline: 2px solid var(--azure);
-        outline-offset: 4px;
-        border-radius: 4px;
-      }
-
-      .btn-sign-in {
-        padding: 10px 24px;
-        background: var(--azure);
-        color: var(--white);
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        font-weight: 600;
-        font-family: var(--font-family);
-        cursor: pointer;
-        transition: background-color 160ms, box-shadow 160ms;
-      }
-
-      .btn-sign-in:hover {
-        background: var(--light-blue);
-        box-shadow: 0 4px 12px rgba(0, 128, 255, 0.2);
-      }
-
-      .btn-sign-in:focus-visible {
-        outline: 2px solid var(--azure);
-        outline-offset: 4px;
-      }
-    }
-
-    .mobile-menu-toggle {
-      display: block;
-      background: none;
-      border: none;
-      padding: var(--space-xs);
-      cursor: pointer;
-      color: var(--azure);
-    }
-
-    @media (min-width: 768px) {
-      .mobile-menu-toggle {
-        display: none;
-      }
-    }
-
-    /* ========================================
-       HERO SECTION
-       ======================================== */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: var(--grad-dark);
-      background-size: 200% 200%;
-      animation: ql-electric-flow 12s linear infinite;
-      padding-top: 80px;
-      overflow: hidden;
-    }
-
-    .hero-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-2xl);
-      align-items: center;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: var(--space-2xl) var(--space-lg);
-    }
-
-    @media (min-width: 1024px) {
-      .hero-container {
-        grid-template-columns: 1fr 1fr;
-        padding: var(--space-3xl) 120px;
-      }
-    }
-
-    .hero-content {
-      animation: ql-fade-up 450ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
-      animation-delay: 200ms;
-      opacity: 0;
-    }
-
-    .hero-headline {
-      font-size: 42px;
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-bottom: var(--space-md);
-    }
-
-    @media (min-width: 768px) {
-      .hero-headline {
-        font-size: 56px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .hero-headline {
-        font-size: 64px;
-      }
-    }
-
-    .hero-subheadline {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--light-blue);
-      line-height: 1.6;
-      margin-bottom: var(--space-xl);
-      max-width: 560px;
-    }
-
-    @media (min-width: 768px) {
-      .hero-subheadline {
-        font-size: 20px;
-      }
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-      align-items: flex-start;
-    }
-
-    .btn-primary {
-      padding: 14px 36px;
-      background: var(--azure);
-      color: var(--white);
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: 700;
-      font-family: var(--font-family);
-      text-decoration: none;
-      cursor: pointer;
-      display: inline-block;
-      transition: background-color 160ms, box-shadow 160ms;
-    }
-
-    .btn-primary:hover {
-      background: var(--light-blue);
-      box-shadow: 0 4px 12px rgba(0, 128, 255, 0.4);
-    }
-
-    .btn-primary:focus-visible {
-      outline: 2px solid var(--white);
-      outline-offset: 4px;
-    }
-
-    .text-link {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--light-blue);
-      text-decoration: none;
-      transition: color 160ms;
+    .ql-logo {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
+      letter-spacing: 0.14em;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
-    .text-link:hover {
-      color: var(--white);
+    .ql-logo-text-primary {
+      color: #e5e7eb;
     }
 
-    .text-link:focus-visible {
-      outline: 2px solid var(--white);
-      outline-offset: 4px;
-      border-radius: 4px;
+    .ql-logo-text-accent {
+      color: #5ca6ff;
     }
 
-    .hero-visual {
+    .ql-nav {
       display: flex;
       align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #cbd5f5;
+    }
+
+    .ql-nav-link {
+      position: relative;
+      padding: 4px 0;
+      opacity: 0.85;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .ql-nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #5ca6ff, #9f7bff);
+      transition: width 160ms ease;
+    }
+
+    .ql-nav-link:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .ql-nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Buttons */
+
+    .ql-btn {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      animation: ql-fade-up 450ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
-      animation-delay: 400ms;
-      opacity: 0;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 140ms ease, transform 140ms ease, box-shadow 140ms ease,
+        border-color 140ms ease, color 140ms ease;
+      white-space: nowrap;
     }
 
-    .hero-image {
-      max-width: 100%;
-      height: auto;
-      filter: drop-shadow(0 8px 24px rgba(0, 128, 255, 0.3));
+    .ql-btn-primary {
+      background: linear-gradient(135deg, #4b8dff, #5ca6ff);
+      color: #0b1020;
+      box-shadow: 0 12px 30px rgba(34, 123, 255, 0.35);
     }
 
-    .hero-spline {
-  display: block;
-  width: 100%;
-  max-width: 600px;
-  height: 600px;
-  filter: drop-shadow(0 8px 24px rgba(0, 128, 255, 0.3));
-}
-    @media (max-width: 768px) {
-      .hero-spline {
-        height: 400px;
+    .ql-btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(34, 123, 255, 0.45);
+    }
+
+    .ql-btn-secondary {
+      background: transparent;
+      color: #d1d5db;
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .ql-btn-secondary:hover {
+      border-color: rgba(209, 213, 219, 0.9);
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    /* Hero */
+
+    .ql-hero {
+      padding: 80px 0 72px;
+    }
+
+    .ql-hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .ql-hero-title {
+      font-size: 48px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin: 0 0 20px;
+    }
+
+    .ql-hero-subtitle {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #cbd5f5;
+      max-width: 520px;
+      margin-bottom: 24px;
+    }
+
+    .ql-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .ql-hero-meta {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    .ql-hero-meta span {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .ql-hero-visual {
+      position: relative;
+      height: 360px;
+      border-radius: 32px;
+      overflow: hidden;
+      background: radial-gradient(circle at 10% 0%, rgba(92, 166, 255, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 90% 90%, rgba(159, 123, 255, 0.16) 0%, transparent 55%),
+        #020617;
+      box-shadow: 0 30px 90px rgba(15, 23, 42, 0.75);
+    }
+
+    .ql-hero-visual iframe,
+    .ql-hero-visual canvas {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Sections */
+
+    .ql-section {
+      padding: 72px 0;
+    }
+
+    .ql-section-light {
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.85), #020617 60%);
+    }
+
+    .ql-section-dark {
+      background: radial-gradient(circle at top right, rgba(15, 23, 42, 0.9), #020617 80%);
+    }
+
+    .ql-section-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .ql-section-header {
+      max-width: 720px;
+    }
+
+    .ql-section-title {
+      margin: 0 0 12px;
+      font-size: 30px;
+      letter-spacing: -0.03em;
+    }
+
+    .ql-section-lead {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #cbd5f5;
+    }
+
+    .ql-section-align-center {
+      text-align: center;
+      align-items: center;
+    }
+
+    .ql-section-align-center .ql-section-title,
+    .ql-section-align-center .ql-section-lead {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Grid and Cards */
+
+    .ql-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .ql-grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .ql-grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .ql-card {
+      border-radius: 20px;
+      padding: 22px 20px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
+    }
+
+    .ql-card-on-dark {
+      background: radial-gradient(circle at top, rgba(51, 65, 85, 0.7), rgba(15, 23, 42, 0.98));
+      border-color: rgba(148, 163, 184, 0.35);
+    }
+
+    .ql-card-title {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .ql-card-body {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #cbd5f5;
+    }
+
+    .ql-link {
+      display: inline-flex;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #93c5fd;
+    }
+
+    .ql-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Timeline */
+
+    .ql-timeline {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .ql-timeline-step {
+      border-radius: 20px;
+      padding: 20px 18px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      position: relative;
+    }
+
+    .ql-timeline-step::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, rgba(92, 166, 255, 0.55), rgba(159, 123, 255, 0.35))
+        border-box;
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .ql-timeline-title {
+      margin: 0 0 10px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .ql-timeline-body {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #cbd5f5;
+    }
+
+    .ql-section-cta {
+      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* Footer */
+
+    .ql-footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.24);
+      background: #020617;
+      padding: 22px 0;
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    .ql-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ql-footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ql-footer-links a {
+      opacity: 0.85;
+    }
+
+    .ql-footer-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 960px) {
+      .ql-header-inner {
+        padding-inline: 18px;
+      }
+
+      .ql-nav {
+        display: none;
+      }
+
+      .ql-hero {
+        padding-top: 56px;
+      }
+
+      .ql-hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .ql-hero-visual {
+        height: 320px;
+      }
+
+      .ql-grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ql-grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ql-timeline {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    /* ========================================
-       MAIN CONTENT AREA
-       ======================================== */
-    .main-content {
-      padding-top: 80px;
-    }
+    @media (max-width: 640px) {
+      .ql-hero-title {
+        font-size: 36px;
+      }
 
-    /* Placeholder sections for future development */
-    .section {
-      padding: var(--space-3xl) 0;
-    }
+      .ql-hero-inner {
+        gap: 28px;
+      }
 
-    .section-title {
-      font-size: 42px;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.2;
-      margin-bottom: var(--space-lg);
-    }
+      .ql-grid-3,
+      .ql-grid-4 {
+        grid-template-columns: minmax(0, 1fr);
+      }
 
-    /* ========================================
-       FOOTER (Placeholder)
-       ======================================== */
-    .site-footer {
-      background: var(--navy);
-      color: var(--light-blue);
-      padding: var(--space-2xl) 0;
-      margin-top: var(--space-3xl);
-    }
+      .ql-section {
+        padding: 56px 0;
+      }
 
-    .footer-container {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 var(--space-lg);
-      text-align: center;
-    }
+      .ql-header-inner {
+        padding-inline: 16px;
+      }
 
-    .footer-tagline {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--light-blue);
-      letter-spacing: 2px;
+      .ql-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .ql-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
     }
   </style>
 </head>
+
 <body>
-  <a href="#main" class="visually-hidden">Skip to main content</a>
+  <!-- Header -->
+  <header id="top" class="ql-header">
+    <div class="ql-container ql-header-inner">
+      <a href="#top" class="ql-logo">
+        <span class="ql-logo-text-primary">QUANTON</span>
+        <span class="ql-logo-text-accent">LABS</span>
+      </a>
 
-<header class="site-header">
-  <div class="header-container">
-    <a href="/" class="logo" aria-label="Quanton Labs Homepage">
-      <img src="images/QL_wordmark.svg" alt="Quanton Labs" class="logo-wordmark" height="32">
-
-    </a>
-
-      <nav class="primary-nav" aria-label="Primary">
-        <a href="#company" class="nav-link">Company</a>
-        <a href="#features" class="nav-link">Features</a>
-        <a href="#resources" class="nav-link">Resources</a>
-        <a href="#docs" class="nav-link">Docs</a>
-        <a
-  href="https://calendly.com/quantonlabs/30min"
-  class="btn-sign-in"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  Schedule Discovery Call
-</a>
+      <nav class="ql-nav">
+        <a href="#company" class="ql-nav-link">Company</a>
+        <a href="#growth-os" class="ql-nav-link">Growth OS</a>
+        <a href="#systems" class="ql-nav-link">Systems</a>
+        <a href="#resources" class="ql-nav-link">Resources</a>
+        <a href="#docs" class="ql-nav-link">Docs</a>
       </nav>
 
-      <button class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
+      <a
+        href="https://calendly.com/quantonlabs/30min"
+        class="ql-btn ql-btn-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Schedule Discovery Call
+      </a>
     </div>
   </header>
 
-  <main id="main" class="main-content">
-    <section class="hero">
-      <div class="hero-container">
-        <div class="hero-content">
-          <h1 class="hero-headline">Intelligent Operating Systems for Growth-Stage Businesses</h1>
-          <p class="hero-subheadline">Deploy complete operating systems for growth-stage businesses. Transform operational chaos into systematic intelligence with AI-integrated infrastructure.</p>
-      <div class="hero-cta-group">
-  <a
-    href="https://calendly.com/quantonlabs/30min"
-    class="btn-primary"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Schedule Discovery Call
-  </a>
-  <a href="#growth-os" class="text-link">
-    Learn about Growth OS
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M6 12l4-4-4-4"></path>
-    </svg>
-  </a>
-</div>
+  <!-- Hero -->
+  <section class="ql-hero">
+    <div class="ql-container ql-hero-inner">
+      <div class="ql-hero-copy">
+        <h1 class="ql-hero-title">
+          Intelligent Operating Systems for Growth-Stage Businesses
+        </h1>
+        <p class="ql-hero-subtitle">
+          Deploy complete operating systems for growth-stage businesses. Transform operational
+          chaos into systematic intelligence with AI-integrated infrastructure.
+        </p>
+
+        <div class="ql-hero-actions">
+          <a
+            href="https://calendly.com/quantonlabs/30min"
+            class="ql-btn ql-btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Schedule Discovery Call
+          </a>
+
+          <a href="#growth-os" class="ql-btn ql-btn-secondary">
+            Learn about Growth OS
+          </a>
         </div>
 
-        <div class="hero-visual">
-          <spline-viewer url="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode" class="hero-spline"></spline-viewer>
+        <p class="ql-hero-meta">
+          Designed for <span>growth-stage operators</span> who need infrastructure that scales
+          faster than headcount.
+        </p>
+      </div>
+
+      <div class="ql-hero-visual">
+        <!-- Replace this iframe with your existing Spline embed if different -->
+        <iframe
+          src="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode"
+          title="Quanton Labs Particle System"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company -->
+  <section id="company" class="ql-section ql-section-light">
+    <div class="ql-container ql-section-inner">
+      <div class="ql-section-header">
+        <h2 class="ql-section-title">Built for Growth-Stage Operators</h2>
+        <p class="ql-section-lead">
+          Quanton Labs is a business infrastructure studio that deploys Growth OS, an AI-integrated
+          operating system for companies generating roughly $1M to $20M annually.
+        </p>
+      </div>
+
+      <div class="ql-grid ql-grid-3">
+        <div class="ql-card">
+          <h3 class="ql-card-title">Who We Serve</h3>
+          <p class="ql-card-body">
+            Owner-led companies with 5 to 50 employees that have outgrown ad hoc workflows and
+            need a coherent operating system for the next stage of scale.
+          </p>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">Where We Operate</h3>
+          <p class="ql-card-body">
+            We sit at the intersection of fractional COOs, systems integrators, and AI automation
+            firms, delivering infrastructure instead of isolated recommendations or disconnected
+            automations.
+          </p>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">What Changes</h3>
+          <p class="ql-card-body">
+            Operational chaos gives way to governed execution, clear metrics, and an architecture
+            that compounds momentum instead of constraining it.
+          </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Future sections will be added here -->
-  </main>
+  <!-- Growth OS -->
+  <section id="growth-os" class="ql-section ql-section-dark">
+    <div class="ql-container ql-section-inner">
+      <div class="ql-section-header">
+        <h2 class="ql-section-title">What Is Growth OS</h2>
+        <p class="ql-section-lead">
+          Growth OS is a deployable business operating system that integrates strategy,
+          automation, and intelligence into a single governed infrastructure built on your
+          existing platforms.
+        </p>
+      </div>
 
-  <footer class="site-footer">
-    <div class="footer-container">
-      <p class="footer-tagline">THE ARCHITECTURE OF INTELLIGENT BUSINESS</p>
+      <div class="ql-grid ql-grid-3">
+        <div class="ql-card ql-card-on-dark">
+          <h3 class="ql-card-title">Productized Architecture</h3>
+          <p class="ql-card-body">
+            Pre-configured workspaces, standardized workflows, and governance fields that turn
+            your project management stack into the control layer for the entire business.
+          </p>
+        </div>
+
+        <div class="ql-card ql-card-on-dark">
+          <h3 class="ql-card-title">AI Agent Orchestration</h3>
+          <p class="ql-card-body">
+            Three tiers of AI agents, Launch, Elevate, and Command, orchestrate data flows,
+            insights, and actions across your CRM, automations, and operational workspace.
+          </p>
+        </div>
+
+        <div class="ql-card ql-card-on-dark">
+          <h3 class="ql-card-title">Methodology, Not Just Tools</h3>
+          <p class="ql-card-body">
+            A structured implementation methodology, performance reviews, and quarterly system
+            audits ensure Growth OS keeps evolving with your business instead of falling behind it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Systems -->
+  <section id="systems" class="ql-section ql-section-light">
+    <div class="ql-container ql-section-inner">
+      <div class="ql-section-header">
+        <h2 class="ql-section-title">The Four Operating Systems</h2>
+        <p class="ql-section-lead">
+          Growth OS organizes your company into four interconnected operating systems, each aligned
+          with a core design principle.
+        </p>
+      </div>
+
+      <div class="ql-grid ql-grid-4">
+        <div class="ql-card">
+          <h3 class="ql-card-title">Strategy System</h3>
+          <p class="ql-card-body">
+            Aligns vision, objectives, and KPIs. Runs diagnostics, planning cycles, and performance
+            reviews so every initiative ties back to measurable outcomes.
+          </p>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">Platform System</h3>
+          <p class="ql-card-body">
+            Connects project management, CRM, data, and brand assets into a single architecture
+            that supports automation, reporting, and decision velocity.
+          </p>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">Operations System</h3>
+          <p class="ql-card-body">
+            Governs day-to-day delivery, compliance, and quality control through standardized
+            workflows, SOP references, and review cadences.
+          </p>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">Growth System</h3>
+          <p class="ql-card-body">
+            Drives revenue and visibility with structured campaigns, conversion optimization, and
+            feedback loops that create compounding momentum.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation -->
+  <section id="implementation" class="ql-section ql-section-dark">
+    <div class="ql-container ql-section-inner">
+      <div class="ql-section-header">
+        <h2 class="ql-section-title">How Engagement Works</h2>
+        <p class="ql-section-lead">
+          We deploy Growth OS through a structured implementation cycle that balances strategic
+          design, technical architecture, and human adoption.
+        </p>
+      </div>
+
+      <div class="ql-timeline">
+        <div class="ql-timeline-step">
+          <h3 class="ql-timeline-title">1. Diagnose</h3>
+          <p class="ql-timeline-body">
+            Deep discovery, operational diagnostics, and KPI definition to map your current state,
+            constraints, and growth objectives.
+          </p>
+        </div>
+
+        <div class="ql-timeline-step">
+          <h3 class="ql-timeline-title">2. Design & Deploy</h3>
+          <p class="ql-timeline-body">
+            Configure Growth OS on your existing stack, deploy workflows and agents, and train your
+            team on new execution patterns.
+          </p>
+        </div>
+
+        <div class="ql-timeline-step">
+          <h3 class="ql-timeline-title">3. Optimize & Scale</h3>
+          <p class="ql-timeline-body">
+            Monitor performance, increase automation coverage, and expand into managed services
+            or partner licensing as your infrastructure matures.
+          </p>
+        </div>
+      </div>
+
+      <div class="ql-section-cta">
+        <a
+          href="https://calendly.com/quantonlabs/30min"
+          class="ql-btn ql-btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Discuss an Implementation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section id="resources" class="ql-section ql-section-light">
+    <div class="ql-container ql-section-inner">
+      <div class="ql-section-header">
+        <h2 class="ql-section-title">Resources</h2>
+        <p class="ql-section-lead">
+          Reference material that explains how Growth OS works under the hood and how it scales
+          with your organization.
+        </p>
+      </div>
+
+      <div class="ql-grid ql-grid-3">
+        <div class="ql-card">
+          <h3 class="ql-card-title">Growth OS Framework</h3>
+          <p class="ql-card-body">
+            Technical overview of the four operating systems, workflow library, and AI agent
+            architecture that sits on top of your tools.
+          </p>
+          <a href="#docs" class="ql-link">View framework summary</a>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">Implementation Playbook</h3>
+          <p class="ql-card-body">
+            Step-by-step view of discovery, deployment, and optimization with example deliverables
+            and milestones.
+          </p>
+          <a href="#docs" class="ql-link">Request playbook</a>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">AI Agent Library</h3>
+          <p class="ql-card-body">
+            Representative Launch, Elevate, and Command agents that show how we orchestrate
+            automation across your stack.
+          </p>
+          <a href="#docs" class="ql-link">Explore agent use cases</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Docs -->
+  <section id="docs" class="ql-section ql-section-dark">
+    <div class="ql-container ql-section-inner ql-section-align-center">
+      <div class="ql-section-header ql-section-align-center">
+        <h2 class="ql-section-title">Growth OS Documentation</h2>
+        <p class="ql-section-lead">
+          Full technical documentation, SOP libraries, and architecture diagrams are available for
+          active and prospective clients.
+        </p>
+      </div>
+
+      <div class="ql-section-cta">
+        <a
+          href="mailto:hello@quantonlabs.com?subject=Growth%20OS%20Documentation"
+          class="ql-btn ql-btn-secondary"
+        >
+          Request Documentation Access
+        </a>
+        <a
+          href="https://calendly.com/quantonlabs/30min"
+          class="ql-btn ql-btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Schedule Discovery Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="ql-footer">
+    <div class="ql-container ql-footer-inner">
+      <div>
+        &copy; <span id="ql-year"></span> Quanton Labs. All rights reserved.
+      </div>
+      <div class="ql-footer-links">
+        <a href="#company">Company</a>
+        <a href="#growth-os">Growth OS</a>
+        <a href="#systems">Systems</a>
+        <a href="#resources">Resources</a>
+        <a href="#docs">Docs</a>
+      </div>
     </div>
   </footer>
 
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.99/build/spline-viewer.js"></script>
   <script>
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const primaryNav = document.querySelector('.primary-nav');
-
-    if (menuToggle && primaryNav) {
-      menuToggle.addEventListener('click', () => {
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-        // Mobile menu implementation will be completed in future iterations
-      });
-    }
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && href !== '') {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
-    });
+    document.getElementById('ql-year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
