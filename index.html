@@ -23,7 +23,7 @@
 
   <style>
     /* =========================================================
-       Quanton Labs — Embedded Styles
+       Quanton Labs - Embedded Styles
        ========================================================= */
 
     *,
@@ -408,7 +408,7 @@
       text-decoration: underline;
     }
 
-    /* Engagement cards */
+    /* Engagement cards (not yet used, kept for future sections) */
 
     .ql-engagement-grid {
       display: grid;
@@ -541,6 +541,52 @@
       text-decoration: underline;
     }
 
+    /* Back to top control */
+
+    .ql-back-to-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.95), rgba(15, 23, 42, 0.98));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      box-shadow: 0 0 0 rgba(15, 23, 42, 0);
+      transition:
+        opacity 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease,
+        background 180ms ease;
+      z-index: 45;
+    }
+
+    .ql-back-to-top-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.9),
+        0 0 26px rgba(96, 165, 250, 0.65);
+      border-color: rgba(191, 219, 254, 0.95);
+    }
+
+    .ql-back-to-top:hover {
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 1), rgba(15, 23, 42, 0.98));
+    }
+
     /* Scroll reveal base state */
 
     .ql-reveal {
@@ -627,6 +673,15 @@
       .ql-hero-actions {
         flex-direction: column;
         align-items: stretch;
+      }
+
+      .ql-back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 10px;
+        letter-spacing: 0.12em;
       }
     }
   </style>
@@ -1029,6 +1084,11 @@
     </div>
   </footer>
 
+  <!-- Back to top control -->
+  <a href="#top" class="ql-back-to-top" aria-label="Back to top">
+    Top
+  </a>
+
   <script>
     // Footer year
     document.getElementById('ql-year').textContent = new Date().getFullYear();
@@ -1114,6 +1174,22 @@
         card.style.removeProperty('--mouse-y');
       });
     });
+
+    // Back to top visibility
+    const backToTop = document.querySelector('.ql-back-to-top');
+
+    if (backToTop) {
+      const toggleBackToTop = () => {
+        if (window.scrollY > 400) {
+          backToTop.classList.add('ql-back-to-top-visible');
+        } else {
+          backToTop.classList.remove('ql-back-to-top-visible');
+        }
+      };
+
+      window.addEventListener('scroll', toggleBackToTop, { passive: true });
+      toggleBackToTop();
+    }
   </script>
 </body>
 </html>
