@@ -236,16 +236,14 @@
       font-weight: 500;
     }
 
-    .ql-hero-visual {
-      position: relative;
-      height: 360px;
-      border-radius: 32px;
-      overflow: hidden;
-      background: radial-gradient(circle at 10% 0%, rgba(92, 166, 255, 0.18) 0%, transparent 55%),
-        radial-gradient(circle at 90% 90%, rgba(159, 123, 255, 0.16) 0%, transparent 55%),
-        #020617;
-      box-shadow: 0 30px 90px rgba(15, 23, 42, 0.75);
-    }
+   .ql-hero-visual {
+  position: relative;
+  height: 420px;           /* give the 3D a bit more presence */
+  border-radius: 32px;
+  overflow: hidden;
+  background: transparent; /* let the page gradient show through */
+  box-shadow: none;        /* remove card shadow */
+}
 
     .ql-hero-visual iframe,
     .ql-hero-visual canvas {
