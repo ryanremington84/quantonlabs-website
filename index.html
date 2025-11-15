@@ -11,6 +11,12 @@
     rel="stylesheet"
   />
 
+  <!-- Spline viewer script -->
+  <script
+    type="module"
+    src="https://unpkg.com/@splinetool/viewer@1.9.58/build/spline-viewer.js"
+  ></script>
+
   <style>
     /* =========================================================
        Quanton Labs — Embedded Styles
@@ -247,6 +253,13 @@
       width: 100%;
       height: 100%;
       border: none;
+      display: block;
+    }
+
+    /* Make Spline viewer fill the hero visual area */
+    .ql-hero-visual spline-viewer {
+      width: 100%;
+      height: 100%;
       display: block;
     }
 
@@ -567,13 +580,10 @@
       </div>
 
       <div class="ql-hero-visual">
-  <iframe
-  src="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode"
-  title="Quanton Labs Particle System"
-  frameborder="0"
-  width="100%"
-  height="100%"
-></iframe>
+        <spline-viewer
+          loading="lazy"
+          src="https://prod.spline.design/ydo50RxObOaVjfY9/scene.splinecode"
+        ></spline-viewer>
       </div>
     </div>
   </section>
