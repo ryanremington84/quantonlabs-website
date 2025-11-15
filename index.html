@@ -1175,13 +1175,12 @@
       });
     });
 
-    // Back to top visibility
-    // Back to top visibility and behavior
+  // Back to top visibility and behavior
 const backToTop = document.querySelector('.ql-back-to-top');
 
 if (backToTop) {
   const toggleBackToTop = () => {
-    if (window.scrollY > 400) {
+    if (window.scrollY> 400) {
       backToTop.classList.add('ql-back-to-top-visible');
     } else {
       backToTop.classList.remove('ql-back-to-top-visible');
@@ -1191,25 +1190,26 @@ if (backToTop) {
   window.addEventListener('scroll', toggleBackToTop, { passive: true });
   toggleBackToTop();
 
-// Scroll back to hero, adjusted for sticky header height
-backToTop.addEventListener('click', event => {
-  event.preventDefault();
+  // Scroll back to hero, adjusted for sticky header height
+  backToTop.addEventListener('click', event => {
+    event.preventDefault();
 
-  const hero = document.querySelector('.ql-hero');
-  const header = document.querySelector('.ql-header');
-  const headerHeight = header ? header.offsetHeight : 0;
+    const hero = document.querySelector('.ql-hero');
+    const header = document.querySelector('.ql-header');
+    const headerHeight = header ? header.offsetHeight : 0;
 
-  const targetTop = hero
-    ? hero.getBoundingClientRect().top + window.scrollY - headerHeight
-    : 0;
+    let targetTop = 0;
+    if (hero) {
+      const heroRectTop = hero.getBoundingClientRect().top + window.scrollY;
+      targetTop = heroRectTop - headerHeight;
+    }
 
-  window.scrollTo({
-    top: targetTop,
-    behavior: 'smooth'
+    window.scrollTo({
+      top: targetTop,
+      behavior: 'smooth'
+    });
   });
-});
-
-
+}
   </script>
 </body>
 </html>
