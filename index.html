@@ -194,75 +194,93 @@
 
     /* Hero */
 
-    .ql-hero {
-      padding: 80px 0 72px;
-    }
+ /* Hero */
 
-    .ql-hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: center;
-    }
+.ql-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 112px 0 120px;
+  min-height: 88vh; /* controls how tall the hero feels */
+}
 
-    .ql-hero-title {
-      font-size: 48px;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      margin: 0 0 20px;
-    }
+/* Dark overlay on top of Spline so text stays readable */
+.ql-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(4, 10, 20, 0.96) 0%,
+    rgba(4, 10, 20, 0.88) 38%,
+    rgba(4, 10, 20, 0.36) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
 
-    .ql-hero-subtitle {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #cbd5f5;
-      max-width: 520px;
-      margin-bottom: 24px;
-    }
+.ql-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
 
-    .ql-hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+.ql-hero-copy {
+  max-width: 640px;
+}
 
-    .ql-hero-meta {
-      font-size: 13px;
-      color: #9ca3af;
-    }
+.ql-hero-title {
+  font-size: 52px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 24px;
+}
 
-    .ql-hero-meta span {
-      color: #e5e7eb;
-      font-weight: 500;
-    }
+.ql-hero-subtitle {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #cbd5f5;
+  max-width: 520px;
+  margin: 0 0 28px;
+}
 
-    /* Hero visual integrated with page rather than card */
+.ql-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 22px;
+}
 
-    .ql-hero-visual {
-      position: relative;
-      height: 420px;
-      border-radius: 32px;
-      overflow: hidden;
-      background: transparent;
-      box-shadow: none;
-      will-change: transform;
-    }
+.ql-hero-meta {
+  font-size: 13px;
+  color: #9ca3af;
+}
 
-    .ql-hero-visual iframe,
-    .ql-hero-visual canvas {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
+.ql-hero-meta span {
+  color: #e5e7eb;
+  font-weight: 500;
+}
 
-    .ql-hero-visual spline-viewer {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+/* Full-width Spline background */
+
+.ql-hero-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ql-hero-visual spline-viewer,
+.ql-hero-visual canvas,
+.ql-hero-visual iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
 
     /* Sections */
 
@@ -665,45 +683,50 @@
 
   <!-- Hero -->
   <section class="ql-hero">
-    <div class="ql-container ql-hero-inner">
-      <div class="ql-hero-copy">
-        <h1 class="ql-hero-title">
-          Intelligent Operating Systems for Growth-Stage Businesses
-        </h1>
-        <p class="ql-hero-subtitle">
-          Deploy complete operating systems for growth-stage businesses. Transform operational
-          chaos into systematic intelligence with AI-integrated infrastructure.
-        </p>
+    <!-- Full-width Spline background -->
+    <div class="ql-hero-visual">
+      <spline-viewer
+        loading="lazy"
+        url="https://prod.spline.design/SDyr6SJRK4gzmVKv/scene.splinecode"
+      ></spline-viewer>
+    </div>
 
-        <div class="ql-hero-actions">
-          <a
-            href="https://calendly.com/quantonlabs/30min"
-            class="ql-btn ql-btn-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Schedule Discovery Call
-          </a>
+    <!-- Foreground content -->
+    <div class="ql-container">
+      <div class="ql-hero-inner">
+        <div class="ql-hero-copy">
+          <h1 class="ql-hero-title">
+            Intelligent Operating Systems for Growth-Stage Businesses
+          </h1>
+          <p class="ql-hero-subtitle">
+            Deploy complete operating systems for growth-stage businesses. Transform operational
+            chaos into systematic intelligence with AI-integrated infrastructure.
+          </p>
 
-          <a href="#growth-os" class="ql-btn ql-btn-secondary">
-            Learn about Growth OS
-          </a>
+          <div class="ql-hero-actions">
+            <a
+              href="https://calendly.com/quantonlabs/30min"
+              class="ql-btn ql-btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Schedule Discovery Call
+            </a>
+
+            <a href="#growth-os" class="ql-btn ql-btn-secondary">
+              Learn about Growth OS
+            </a>
+          </div>
+
+          <p class="ql-hero-meta">
+            Designed for <span>growth-stage operators</span> who need infrastructure that scales
+            faster than headcount.
+          </p>
         </div>
-
-        <p class="ql-hero-meta">
-          Designed for <span>growth-stage operators</span> who need infrastructure that scales
-          faster than headcount.
-        </p>
-      </div>
-
-      <div class="ql-hero-visual">
-        <spline-viewer
-          loading="lazy"
-          url="https://prod.spline.design/SDyr6SJRK4gzmVKv/scene.splinecode"
-        ></spline-viewer>
       </div>
     </div>
   </section>
+
 
   <!-- Company -->
   <section id="company" class="ql-section ql-section-light">
