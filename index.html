@@ -404,45 +404,103 @@
 
     /* Timeline */
 
-    .ql-timeline {
+        /* Engagement cards */
+
+    .ql-engagement-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
+      gap: 24px;
+      margin-top: 28px;
     }
 
-    .ql-timeline-step {
-      border-radius: 20px;
-      padding: 20px 18px;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.25);
+    .ql-engagement-card {
       position: relative;
+      border-radius: 22px;
+      padding: 22px 20px;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.38), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow:
+        0 22px 60px rgba(15, 23, 42, 0.96),
+        0 0 26px rgba(92, 166, 255, 0.32);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+      transition:
+        transform 180ms ease,
+        box-shadow 200ms ease,
+        border-color 200ms ease,
+        background 200ms ease;
+      will-change: transform, box-shadow;
     }
 
-    .ql-timeline-step::before {
+    .ql-engagement-card::before {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: -1px;
       border-radius: inherit;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, rgba(92, 166, 255, 0.55), rgba(159, 123, 255, 0.35))
-        border-box;
-      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      opacity: 0.35;
+      background:
+        radial-gradient(
+          140px circle at var(--mouse-x, 50%) var(--mouse-y, 0),
+          rgba(144, 205, 255, 0.75),
+          transparent 60%
+        );
+      opacity: 0;
       pointer-events: none;
+      transition: opacity 220ms ease-out;
     }
 
-    .ql-timeline-title {
+    .ql-engagement-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(191, 219, 254, 0.95);
+      box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.98),
+        0 0 40px rgba(96, 165, 250, 0.65);
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.55), rgba(15, 23, 42, 0.98));
+    }
+
+    .ql-engagement-card:hover::before {
+      opacity: 1;
+    }
+
+    .ql-engagement-title {
       margin: 0 0 10px;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
     }
 
-    .ql-timeline-body {
+    .ql-engagement-body {
       margin: 0;
       font-size: 14px;
       line-height: 1.7;
       color: #cbd5f5;
+    }
+
+    /* CTA glow */
+
+    .ql-btn-glow {
+      position: relative;
+      box-shadow: 0 0 24px rgba(59, 130, 246, 0.7);
+      overflow: hidden;
+    }
+
+    .ql-btn-glow::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: radial-gradient(circle at 50% 0, rgba(191, 219, 254, 0.95), transparent 65%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease-out;
+    }
+
+    .ql-btn-glow:hover::before {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 960px) {
+      .ql-engagement-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     .ql-section-cta {
@@ -926,8 +984,9 @@ const prefersReducedMotion = false;
       '.ql-hero-visual',
       '.ql-section-header',
       '.ql-card',
-      '.ql-timeline-step'
+      '.ql-engagement-card'
     ];
+
 
     const revealElements = [];
     revealSelectors.forEach(selector => {
@@ -980,6 +1039,24 @@ const prefersReducedMotion = false;
         handleScroll();
       }
     }
+        // Cursor-driven glow on engagement cards
+    const engagementCards = document.querySelectorAll('.ql-engagement-card');
+
+    engagementCards.forEach(card => {
+      card.addEventListener('mousemove', event => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.removeProperty('--mouse-x');
+        card.style.removeProperty('--mouse-y');
+      });
+    });
+
   </script>
 </body>
 </html>
