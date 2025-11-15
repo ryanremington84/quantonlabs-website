@@ -1,10 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Quanton Labs · Intelligent Operating Systems for Growth-Stage Businesses</title>
+  <title>Growth OS · The Architecture of Intelligent Business | Quanton Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Quanton Labs deploys Growth OS, an AI integrated operating system that functions like an intelligent ERP for growth stage businesses generating $1M to $20M in annual revenue."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -12,11 +15,11 @@
     rel="stylesheet"
   />
 
-<!-- Spline viewer script -->
-<script
-  type="module"
-  src="https://unpkg.com/@splinetool/viewer@1.11.4/build/spline-viewer.js"
-></script>
+  <!-- Spline viewer script -->
+  <script
+    type="module"
+    src="https://unpkg.com/@splinetool/viewer@1.11.4/build/spline-viewer.js"
+  ></script>
 
   <style>
     /* =========================================================
@@ -100,7 +103,7 @@
 
     .ql-logo {
       display: inline-flex;
-      align-items: center;
+      align-items: baseline;
       gap: 4px;
       letter-spacing: 0.14em;
       font-size: 14px;
@@ -114,6 +117,17 @@
 
     .ql-logo-text-accent {
       color: #5ca6ff;
+    }
+
+    .ql-tagline {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      white-space: nowrap;
     }
 
     .ql-nav {
@@ -194,93 +208,88 @@
 
     /* Hero */
 
- /* Hero */
+    .ql-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 112px 0 120px;
+      min-height: 88vh;
+    }
 
-.ql-hero {
-  position: relative;
-  overflow: hidden;
-  padding: 112px 0 120px;
-  min-height: 88vh; /* controls how tall the hero feels */
-}
+    .ql-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(4, 10, 20, 0.96) 0%,
+        rgba(4, 10, 20, 0.88) 38%,
+        rgba(4, 10, 20, 0.36) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
 
-/* Dark overlay on top of Spline so text stays readable */
-.ql-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(4, 10, 20, 0.96) 0%,
-    rgba(4, 10, 20, 0.88) 38%,
-    rgba(4, 10, 20, 0.36) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
+    .ql-hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+    }
 
-.ql-hero-inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-}
+    .ql-hero-copy {
+      max-width: 640px;
+    }
 
-.ql-hero-copy {
-  max-width: 640px;
-}
+    .ql-hero-title {
+      font-size: 52px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 0 0 24px;
+    }
 
-.ql-hero-title {
-  font-size: 52px;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  margin: 0 0 24px;
-}
+    .ql-hero-subtitle {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #cbd5f5;
+      max-width: 520px;
+      margin: 0 0 28px;
+    }
 
-.ql-hero-subtitle {
-  font-size: 16px;
-  line-height: 1.7;
-  color: #cbd5f5;
-  max-width: 520px;
-  margin: 0 0 28px;
-}
+    .ql-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
 
-.ql-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  margin-bottom: 22px;
-}
+    .ql-hero-meta {
+      font-size: 13px;
+      color: #9ca3af;
+    }
 
-.ql-hero-meta {
-  font-size: 13px;
-  color: #9ca3af;
-}
+    .ql-hero-meta span {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
 
-.ql-hero-meta span {
-  color: #e5e7eb;
-  font-weight: 500;
-}
+    .ql-hero-visual {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
 
-/* Full-width Spline background */
-
-.ql-hero-visual {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.ql-hero-visual spline-viewer,
-.ql-hero-visual canvas,
-.ql-hero-visual iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: none;
-}
+    .ql-hero-visual spline-viewer,
+    .ql-hero-visual canvas,
+    .ql-hero-visual iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
 
     /* Sections */
 
@@ -345,50 +354,31 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    /* Card base with interactive hover */
-
-  .ql-card {
-  border-radius: 20px;
-  padding: 22px 20px;
-  background: rgba(15, 23, 42, 0.92);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
-  transition:
-    transform 180ms ease,
-    box-shadow 200ms ease,
-    border-color 200ms ease,
-    background 200ms ease;
-  will-change: transform, box-shadow;
-}
-
-.ql-card:hover {
-  transform: translateY(-10px); /* more dramatic so you can see it */
-  border-color: rgba(147, 197, 253, 0.95);
-  box-shadow:
-    0 28px 70px rgba(15, 23, 42, 0.98),
-    0 0 40px rgba(92, 166, 255, 0.35);
-  background: radial-gradient(circle at top, rgba(30, 64, 175, 0.45), rgba(15, 23, 42, 0.98));
-}
-
-.ql-card:active {
-  transform: translateY(-4px);
-}
-
+    .ql-card {
+      border-radius: 20px;
+      padding: 22px 20px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
+      transition:
+        transform 180ms ease,
+        box-shadow 200ms ease,
+        border-color 200ms ease,
+        background 200ms ease;
+      will-change: transform, box-shadow;
+    }
 
     .ql-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(147, 197, 253, 0.85);
+      transform: translateY(-10px);
+      border-color: rgba(147, 197, 253, 0.95);
       box-shadow:
-        0 20px 55px rgba(15, 23, 42, 0.95),
-        0 0 32px rgba(92, 166, 255, 0.28);
-      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.35), rgba(15, 23, 42, 0.98));
+        0 28px 70px rgba(15, 23, 42, 0.98),
+        0 0 40px rgba(92, 166, 255, 0.35);
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.45), rgba(15, 23, 42, 0.98));
     }
 
     .ql-card:active {
-      transform: translateY(-2px);
-      box-shadow:
-        0 14px 36px rgba(15, 23, 42, 0.9),
-        0 0 18px rgba(59, 130, 246, 0.25);
+      transform: translateY(-4px);
     }
 
     .ql-card-on-dark {
@@ -421,9 +411,7 @@
       text-decoration: underline;
     }
 
-    /* Timeline */
-
-        /* Engagement cards */
+    /* Engagement cards */
 
     .ql-engagement-grid {
       display: grid;
@@ -514,12 +502,6 @@
 
     .ql-btn-glow:hover::before {
       opacity: 0.85;
-    }
-
-    @media (max-width: 960px) {
-      .ql-engagement-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
     }
 
     .ql-section-cta {
@@ -616,6 +598,10 @@
       .ql-timeline {
         grid-template-columns: minmax(0, 1fr);
       }
+
+      .ql-tagline {
+        display: none;
+      }
     }
 
     @media (max-width: 640px) {
@@ -660,14 +646,16 @@
       <a href="#top" class="ql-logo">
         <span class="ql-logo-text-primary">QUANTON</span>
         <span class="ql-logo-text-accent">LABS</span>
+        <span class="ql-tagline">The Architecture of Intelligent Business</span>
       </a>
 
       <nav class="ql-nav">
-        <a href="#company" class="ql-nav-link">Company</a>
         <a href="#growth-os" class="ql-nav-link">Growth OS</a>
-        <a href="#systems" class="ql-nav-link">Systems</a>
-        <a href="#resources" class="ql-nav-link">Resources</a>
-        <a href="#docs" class="ql-nav-link">Docs</a>
+        <a href="#solutions" class="ql-nav-link">Solutions</a>
+        <a href="#how-it-works" class="ql-nav-link">How It Works</a>
+        <a href="#who-we-serve" class="ql-nav-link">Who We Serve</a>
+        <a href="#case-studies" class="ql-nav-link">Case Studies</a>
+        <a href="#company" class="ql-nav-link">Company</a>
       </nav>
 
       <a
@@ -676,14 +664,13 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        Schedule Discovery Call
+        Book Consultation
       </a>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="ql-hero">
-    <!-- Full-width Spline background -->
     <div class="ql-hero-visual">
       <spline-viewer
         loading="lazy"
@@ -691,16 +678,16 @@
       ></spline-viewer>
     </div>
 
-    <!-- Foreground content -->
     <div class="ql-container">
       <div class="ql-hero-inner">
         <div class="ql-hero-copy">
           <h1 class="ql-hero-title">
-            Intelligent Operating Systems for Growth-Stage Businesses
+            AI Operating Systems for Growth Stage Businesses
           </h1>
           <p class="ql-hero-subtitle">
-            Deploy complete operating systems for growth-stage businesses. Transform operational
-            chaos into systematic intelligence with AI-integrated infrastructure.
+            Deploy Growth OS, an AI integrated operating system that functions like an intelligent
+            ERP for growth stage businesses. Transform operational chaos into governed, measurable
+            execution.
           </p>
 
           <div class="ql-hero-actions">
@@ -710,32 +697,31 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              Schedule Discovery Call
+              Book Consultation
             </a>
 
             <a href="#growth-os" class="ql-btn ql-btn-secondary">
-              Learn about Growth OS
+              Explore Growth OS
             </a>
           </div>
 
           <p class="ql-hero-meta">
-            Designed for <span>growth-stage operators</span> who need infrastructure that scales
-            faster than headcount.
+            The architecture of intelligent business for <span>growth-stage operators</span> who
+            need infrastructure that scales faster than headcount.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- Company -->
-  <section id="company" class="ql-section ql-section-light">
+  <!-- Who We Serve -->
+  <section id="who-we-serve" class="ql-section ql-section-light">
     <div class="ql-container ql-section-inner">
       <div class="ql-section-header">
-        <h2 class="ql-section-title">Built for Growth-Stage Operators</h2>
+        <h2 class="ql-section-title">Who We Serve</h2>
         <p class="ql-section-lead">
-          Quanton Labs is a business infrastructure studio that deploys Growth OS, an AI-integrated
-          operating system for companies generating roughly $1M to $20M annually.
+          Growth OS is built for owner led, growth stage companies generating roughly one to twenty
+          million in annual revenue that need an operating system, not more disconnected tools.
         </p>
       </div>
 
@@ -808,14 +794,14 @@
     </div>
   </section>
 
-  <!-- Systems -->
-  <section id="systems" class="ql-section ql-section-light">
+  <!-- Solutions -->
+  <section id="solutions" class="ql-section ql-section-light">
     <div class="ql-container ql-section-inner">
       <div class="ql-section-header">
-        <h2 class="ql-section-title">The Four Operating Systems</h2>
+        <h2 class="ql-section-title">Solutions Built On Growth OS</h2>
         <p class="ql-section-lead">
-          Growth OS organizes your company into four interconnected operating systems, each aligned
-          with a core design principle.
+          Growth OS functions like an intelligent ERP, with four interconnected operating systems
+          that map directly to how your business actually runs.
         </p>
       </div>
 
@@ -855,11 +841,11 @@
     </div>
   </section>
 
-  <!-- Implementation -->
-  <section id="implementation" class="ql-section ql-section-dark">
+  <!-- How It Works -->
+  <section id="how-it-works" class="ql-section ql-section-dark">
     <div class="ql-container ql-section-inner">
       <div class="ql-section-header">
-        <h2 class="ql-section-title">How Engagement Works</h2>
+        <h2 class="ql-section-title">How Growth OS Is Deployed</h2>
         <p class="ql-section-lead">
           We deploy Growth OS through a structured implementation cycle that balances strategic
           design, technical architecture, and human adoption.
@@ -905,7 +891,44 @@
     </div>
   </section>
 
+  <!-- Case Studies -->
+  <section id="case-studies" class="ql-section ql-section-light">
+    <div class="ql-container ql-section-inner">
+      <div class="ql-section-header">
+        <h2 class="ql-section-title">Case Studies</h2>
+        <p class="ql-section-lead">
+          Selected examples of how Growth OS can be deployed to create clarity, control, and
+          compound growth in real businesses.
+        </p>
+      </div>
 
+      <div class="ql-grid ql-grid-3">
+        <div class="ql-card">
+          <h3 class="ql-card-title">Operational Reset</h3>
+          <p class="ql-card-body">
+            Rebuilt the operating system for a multi location services company so leadership could
+            see capacity, margin, and execution risk in a single view.
+          </p>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">From Tools To Operating System</h3>
+          <p class="ql-card-body">
+            Consolidated scattered tools into Growth OS, turning dashboards, workflows, and agents
+            into one governed architecture instead of a collection of apps.
+          </p>
+        </div>
+
+        <div class="ql-card">
+          <h3 class="ql-card-title">Intelligence Layer On Top Of ERP</h3>
+          <p class="ql-card-body">
+            Layered Growth OS on top of an existing ERP so the executive team could run strategy,
+            performance, and growth from a single intelligent control layer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Resources -->
   <section id="resources" class="ql-section ql-section-light">
@@ -973,8 +996,23 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          Schedule Discovery Call
+          Book Consultation
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company -->
+  <section id="company" class="ql-section ql-section-dark">
+    <div class="ql-container ql-section-inner ql-section-align-center">
+      <div class="ql-section-header ql-section-align-center">
+        <h2 class="ql-section-title">Quanton Labs</h2>
+        <p class="ql-section-lead">
+          Quanton Labs is a business infrastructure company that deploys Growth OS, an AI integrated
+          operating system for growth stage businesses. The system is built from years of consulting
+          experience designing, testing, and refining a repeatable framework for intelligent
+          execution.
+        </p>
       </div>
     </div>
   </section>
@@ -986,11 +1024,14 @@
         &copy; <span id="ql-year"></span> Quanton Labs. All rights reserved.
       </div>
       <div class="ql-footer-links">
-        <a href="#company">Company</a>
         <a href="#growth-os">Growth OS</a>
-        <a href="#systems">Systems</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#who-we-serve">Who We Serve</a>
+        <a href="#case-studies">Case Studies</a>
         <a href="#resources">Resources</a>
         <a href="#docs">Docs</a>
+        <a href="#company">Company</a>
       </div>
     </div>
   </footer>
@@ -999,9 +1040,8 @@
     // Footer year
     document.getElementById('ql-year').textContent = new Date().getFullYear();
 
- // Temporarily ignore OS reduce-motion so we can see animations
-const prefersReducedMotion = false;
-
+    // Temporarily ignore OS reduce-motion so we can see animations
+    const prefersReducedMotion = false;
 
     // Elements that should reveal on scroll
     const revealSelectors = [
@@ -1011,7 +1051,6 @@ const prefersReducedMotion = false;
       '.ql-card',
       '.ql-engagement-card'
     ];
-
 
     const revealElements = [];
     revealSelectors.forEach(selector => {
@@ -1064,7 +1103,8 @@ const prefersReducedMotion = false;
         handleScroll();
       }
     }
-        // Cursor-driven glow on engagement cards
+
+    // Cursor-driven glow on engagement cards
     const engagementCards = document.querySelectorAll('.ql-engagement-card');
 
     engagementCards.forEach(card => {
@@ -1081,7 +1121,6 @@ const prefersReducedMotion = false;
         card.style.removeProperty('--mouse-y');
       });
     });
-
   </script>
 </body>
 </html>
