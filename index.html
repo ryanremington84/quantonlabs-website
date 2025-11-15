@@ -1201,7 +1201,7 @@ if (backToTop) {
     let targetTop = 0;
     if (hero) {
       const heroRectTop = hero.getBoundingClientRect().top + window.scrollY;
-      targetTop = heroRectTop - headerHeight;
+      targetTop = heroRectTop - headerHeight -16;
     }
 
     window.scrollTo({
