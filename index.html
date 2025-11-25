@@ -80,51 +80,44 @@
 
     /* Header */
 
-    .ql-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(20px);
-      background: linear-gradient(
-        to bottom,
-        rgba(4, 10, 20, 0.94),
-        rgba(4, 10, 20, 0.92),
-        rgba(4, 10, 20, 0.86)
-      );
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    }
+   /* Header */
 
-    .ql-header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 24px;
-    }
+.ql-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(20px);
+  background: #041227; /* Matches Quanton brand nav color */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ql-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+
 .ql-logo {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
 }
 
-/* separate, top-level rule */
+/* This is the ONLY logo image rule you need */
 .ql-logo-image {
-  height: 48px;  /* adjust: 40–56px until it looks right */
+  height: 60px;   /* Change 48–72px until it looks right */
   width: auto;
   display: block;
 }
 
-    .ql-logo-text-primary {
-      color: #e5e7eb;
-    }
-
-    .ql-logo-text-accent {
-      color: #5ca6ff;
-      .ql-logo-image {
-  height: 48px;
-  width: auto;
-  display: block;
+/* These remain for the old text logo but do not affect the image */
+.ql-logo-text-primary {
+  color: #e5e7eb;
 }
-    }
+
+.ql-logo-text-accent {
+  color: #5ca6ff;
+}
 
     .ql-nav {
       display: flex;
