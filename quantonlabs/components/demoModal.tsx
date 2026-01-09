@@ -384,7 +384,7 @@ const DemoModal = ({ showDemoModal, setShowDemoModal }: { showDemoModal: boolean
                                 <span className="text-sm">Processing...</span>
                             </div>
                         ) : (
-                            <Button onClick={handleExecute} variant="default" className="bg-gradient-to-r from-blue-600 to-purple-600">
+                            <Button onClick={handleExecute} variant="default" className="bg-linear-to-r from-blue-600 to-purple-600">
                                 Start Execution
                             </Button>
                         )}
@@ -395,7 +395,7 @@ const DemoModal = ({ showDemoModal, setShowDemoModal }: { showDemoModal: boolean
 
         if (activeDemoTab === 'logs') {
             return (
-                <div className="w-full h-96 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4">
+                <div className="w-full h-96 bg-linear-to-br from-gray-800 to-gray-900 rounded-lg p-4">
                     <h3 className="font-medium mb-4">Execution Logs</h3>
 
                     <div className="space-y-2 max-h-80 overflow-y-auto pr-2">
@@ -555,7 +555,7 @@ const DemoModal = ({ showDemoModal, setShowDemoModal }: { showDemoModal: boolean
                         Close
                     </Button>
                     <Button
-                        className="bg-gradient-to-r from-blue-600 to-purple-600"
+                        className="bg-linear-to-r from-blue-600 to-purple-600"
                         onClick={handleExecute}
                         disabled={isExecuting || workflowSteps[workflowSteps.length - 1]?.status === 'completed'}
                     >
